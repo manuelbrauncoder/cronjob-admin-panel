@@ -2,18 +2,20 @@
     <caption>Cronjobs List</caption>
     <thead>
         <tr>
-            <th scope="col">key</th>
-            <th scope="col">time</th>
-            <th scope="col">last execution</th>
-            <th scope="col">error on last execution?</th>
+            <th scope="col">Key</th>
+            <th scope="col">Interval</th>
+            <th scope="col">Last execution</th>
+            <th scope="col">Error on last execution?</th>
+            <th scope="col">Run</th>
         </tr>
     </thead>
     @for (job of cronjobs; track $index) {
         <tr>
-            <td>{{ job.key }}</td>
-            <td>{{ job.time }}</td>
-            <td>{{ job.lastExecution }}</td>
-            <td>{{ job.errorOnLastExecution }}</td>
+            <td>{{ job.key | handleKey }}</td>
+            <td>{{ job.time | cronExpressionDescription }}</td>
+            <td>{{ job.lastExecution | date: 'short' }}</td>
+            <td>{{ job.errorOnLastExecution | boolToText }}</td>
+            <td><button>Run</button></td>
         </tr>
     }
 </table>

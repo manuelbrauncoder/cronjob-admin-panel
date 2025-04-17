@@ -4,10 +4,14 @@ import { GetCronjobsUseCaseService } from '../../../application/use-cases/get-cr
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
+import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
+import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 
 @Component({
   selector: 'app-cronjob-table',
-  imports: [],
+  imports: [DatePipe, BoolToTextPipe, HandleKeyPipe, CronExpressionDescriptionPipe],
   templateUrl: './cronjob-table.component.html',
   styleUrl: './cronjob-table.component.scss',
   providers: [
@@ -19,7 +23,7 @@ import { HttpResponse } from '@angular/common/http';
   ],
 })
 export class CronjobTableComponent implements OnInit {
-  
+
   cronjobs: CronJob[] = [];
   getCronJobsUseCase = inject(GetCronjobsUseCaseService);
 
