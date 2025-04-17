@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cronjob } from '../../domain/models/cronjob.interface';
 import { Log } from '../../domain/models/log.interface';
+import { CronJobRepository } from '../../domain/services/cronjob-repository';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CronjobApiService {
+export class CronjobApiService extends CronJobRepository {
 
   private baseUrl: string = 'http://localhost:2001/jobs';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    super();
+  }
 
   getJobList(): Observable<HttpResponse<Cronjob[]>> {
     return this.http.get<Cronjob[]>(this.baseUrl, { observe: 'response'});
