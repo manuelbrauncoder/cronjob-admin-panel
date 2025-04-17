@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter';
+}
+
+$color-error: #ed1e79;
+$color-success: #92c83e;
+$color-main: #444df2;
+$color-accent: #797ef3;
+$color-disabled: #686868;
+$color-bg-light: #eceefe;
+$color-bg-dark: #292929;
+
+$content-limit: 1920px;
+
+
