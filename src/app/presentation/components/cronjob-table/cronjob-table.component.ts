@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
+import { ExecuteCronJobUseCaseService } from '../../../application/use-cases/execute-cron-job-use-case.service';
 
 @Component({
   selector: 'app-cronjob-table',
@@ -20,15 +21,42 @@ import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-descr
       provide: CronJobRepository,
       useClass: CronjobApiService,
     },
+    ExecuteCronJobUseCaseService,
+    {
+      provide: CronJobRepository,
+      useClass: CronjobApiService
+    }
   ],
 })
 export class CronjobTableComponent implements OnInit {
 
   cronjobs: CronJob[] = [];
   getCronJobsUseCase = inject(GetCronjobsUseCaseService);
+  executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
 
   ngOnInit(): void {
     this.getCronJobs();
+  }
+
+  executeCronJob({ key }: { key: string }) {
+    this.executeCronJobUseCase.execute({ key: key }).subscribe({
+      next:(response: HttpResponse<void>) => {
+          if (response.status === 204) {
+            // show toast success
+            console.log('Success');
+            
+          } else {
+            // show toast error
+            console.log('Error');
+            
+          }
+      },
+      error: (err) => {
+        // show toast with error
+        console.log('Error');
+
+      }
+    })
   }
 
   getCronJobs() {
@@ -38,6 +66,8 @@ export class CronjobTableComponent implements OnInit {
       },
       error: (err) => {
         // show toast with error
+        console.log('Error');
+
       },
     });
   }
