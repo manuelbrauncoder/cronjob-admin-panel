@@ -9,10 +9,16 @@ import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 import { ExecuteCronJobUseCaseService } from '../../../application/use-cases/execute-cron-job-use-case.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cronjob-table',
-  imports: [DatePipe, BoolToTextPipe, HandleKeyPipe, CronExpressionDescriptionPipe],
+  imports: [
+    DatePipe,
+    BoolToTextPipe,
+    HandleKeyPipe,
+    CronExpressionDescriptionPipe,
+  ],
   templateUrl: './cronjob-table.component.html',
   styleUrl: './cronjob-table.component.scss',
   providers: [
@@ -24,15 +30,15 @@ import { ExecuteCronJobUseCaseService } from '../../../application/use-cases/exe
     ExecuteCronJobUseCaseService,
     {
       provide: CronJobRepository,
-      useClass: CronjobApiService
-    }
+      useClass: CronjobApiService,
+    },
   ],
 })
 export class CronjobTableComponent implements OnInit {
-
   cronjobs: CronJob[] = [];
   getCronJobsUseCase = inject(GetCronjobsUseCaseService);
   executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.getCronJobs();
@@ -40,23 +46,20 @@ export class CronjobTableComponent implements OnInit {
 
   executeCronJob({ key }: { key: string }) {
     this.executeCronJobUseCase.execute({ key: key }).subscribe({
-      next:(response: HttpResponse<void>) => {
-          if (response.status === 204) {
-            // show toast success
-            console.log('Success');
-            
-          } else {
-            // show toast error
-            console.log('Error');
-            
-          }
+      next: (response: HttpResponse<void>) => {
+        if (response.status === 204) {
+          // show toast success
+          console.log('Success');
+        } else {
+          // show toast error
+          console.log('Error');
+        }
       },
       error: (err) => {
         // show toast with error
         console.log('Error');
-
-      }
-    })
+      },
+    });
   }
 
   getCronJobs() {
@@ -67,8 +70,11 @@ export class CronjobTableComponent implements OnInit {
       error: (err) => {
         // show toast with error
         console.log('Error');
-
       },
     });
+  }
+
+  redirectToDetail({ key }: { key: string }) {
+    this.router.navigate(['/cronjobs', key]);
   }
 }

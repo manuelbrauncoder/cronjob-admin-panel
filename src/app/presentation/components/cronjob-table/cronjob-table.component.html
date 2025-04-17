@@ -10,12 +10,12 @@
         </tr>
     </thead>
     @for (job of cronjobs; track $index) {
-        <tr>
-            <td>{{ job.key | handleKey }}</td>
-            <td>{{ job.time | cronExpressionDescription }}</td>
-            <td>{{ job.lastExecution | date: 'short' }}</td>
-            <td>{{ job.errorOnLastExecution | boolToText }}</td>
-            <td><button (click)="executeCronJob({ key: job.key })">Run</button></td>
-        </tr>
+    <tr (click)="redirectToDetail({ key: job.key })">
+        <td>{{ job.key | handleKey }}</td>
+        <td>{{ job.time | cronExpressionDescription }}</td>
+        <td>{{ job.lastExecution | date: 'short' }}</td>
+        <td>{{ job.errorOnLastExecution | boolToText }}</td>
+        <td><button (click)="executeCronJob({ key: job.key })">Run</button></td>
+    </tr>
     }
 </table>

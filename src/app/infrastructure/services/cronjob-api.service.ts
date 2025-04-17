@@ -25,7 +25,7 @@ export class CronjobApiService extends CronJobRepository {
     return this.http.get<CronJob>(url);
   }
 
-  getLog({ key }: { key: string }): Observable<Log> {
+  getLogsForJob({ key }: { key: string }): Observable<Log> {
     const url = `${this.baseUrl}/${key}/logs`;
     return this.http.get<Log>(url);
   }
