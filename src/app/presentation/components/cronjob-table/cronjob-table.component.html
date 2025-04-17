@@ -14,8 +14,11 @@
         <td>{{ job.key | handleKey }}</td>
         <td>{{ job.time | cronExpressionDescription }}</td>
         <td>{{ job.lastExecution | date: 'short' }}</td>
-        <td>{{ job.errorOnLastExecution | boolToText }}</td>
-        <td><button (click)="executeCronJob({ key: job.key })">Run</button></td>
+        <td>
+            <span>{{ job.errorOnLastExecution | boolToText }}</span>
+            <button (click)="redirectToLastLog({ key: job.key, event: $event })">Last Log</button>
+        </td>
+        <td><button (click)="executeCronJob({ key: job.key, event: $event })">Run</button></td>
     </tr>
     }
 </table>

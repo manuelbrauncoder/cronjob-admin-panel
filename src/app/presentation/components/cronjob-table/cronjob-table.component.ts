@@ -44,7 +44,8 @@ export class CronjobTableComponent implements OnInit {
     this.getCronJobs();
   }
 
-  executeCronJob({ key }: { key: string }) {
+  executeCronJob({ key, event }: { key: string; event: MouseEvent }) {
+    event.stopPropagation();
     this.executeCronJobUseCase.execute({ key: key }).subscribe({
       next: (response: HttpResponse<void>) => {
         if (response.status === 204) {
@@ -76,5 +77,10 @@ export class CronjobTableComponent implements OnInit {
 
   redirectToDetail({ key }: { key: string }) {
     this.router.navigate(['/cronjobs', key]);
+  }
+
+  redirectToLastLog({ key, event }: { key: string; event: MouseEvent }) {
+    event.stopPropagation();
+    this.router.navigate(['/log', key])
   }
 }
