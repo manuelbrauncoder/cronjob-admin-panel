@@ -1,1 +1,19 @@
-<p>cronjob-table works!</p>
+<table>
+    <caption>Cronjobs List</caption>
+    <thead>
+        <tr>
+            <th scope="col">key</th>
+            <th scope="col">time</th>
+            <th scope="col">last execution</th>
+            <th scope="col">error on last execution?</th>
+        </tr>
+    </thead>
+    @for (job of cronjobs; track $index) {
+        <tr>
+            <td>{{ job.key }}</td>
+            <td>{{ job.time }}</td>
+            <td>{{ job.lastExecution }}</td>
+            <td>{{ job.errorOnLastExecution }}</td>
+        </tr>
+    }
+</table>

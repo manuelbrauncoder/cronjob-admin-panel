@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cronjob } from '../../domain/models/cronjob.interface';
+import { CronJob } from '../../domain/models/cronjob.interface';
 import { Log } from '../../domain/models/log.interface';
 import { CronJobRepository } from '../../domain/services/cronjob-repository';
 
@@ -16,13 +16,13 @@ export class CronjobApiService extends CronJobRepository {
     super();
   }
 
-  getJobList(): Observable<HttpResponse<Cronjob[]>> {
-    return this.http.get<Cronjob[]>(this.baseUrl, { observe: 'response'});
+  getJobList(): Observable<HttpResponse<CronJob[]>> {
+    return this.http.get<CronJob[]>(this.baseUrl, { observe: 'response'});
   }
 
-  getJob({ key }: { key: string }): Observable<Cronjob> {
+  getJob({ key }: { key: string }): Observable<CronJob> {
     const url = `${this.baseUrl}/${key}`;
-    return this.http.get<Cronjob>(url);
+    return this.http.get<CronJob>(url);
   }
 
   getLog({ key }: { key: string }): Observable<Log> {
@@ -35,8 +35,8 @@ export class CronjobApiService extends CronJobRepository {
     return this.http.patch<void>(url, { }, { observe: 'response' });
   }
 
-  getLastExecution({ key }: { key: string }): Observable<Cronjob> {
+  getLastExecution({ key }: { key: string }): Observable<CronJob> {
     const url = `${this.baseUrl}/${key}/lastExecution`;
-    return this.http.get<Cronjob>(url);
+    return this.http.get<CronJob>(url);
   }
 }

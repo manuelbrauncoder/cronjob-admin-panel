@@ -1,4 +1,4 @@
-export interface Cronjob {
+export interface CronJob {
     key: string,
     time: string,
     lastExecution?: string,

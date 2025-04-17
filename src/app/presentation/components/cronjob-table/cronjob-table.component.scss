@@ -1,0 +1,33 @@
+table {
+    display: table;
+    border-spacing: 2px;
+    border-collapse: collapse;
+    text-indent: 0;
+    text-align: left;
+
+    caption {
+        margin-bottom: 0.5rem;
+    }
+
+    thead {
+        background: whitesmoke;
+    }
+
+    tr {
+        transition: ease-in-out 125ms;
+
+        th,
+        td {
+            border: 1px solid lightgray;
+            padding: 0.25rem 0.75rem;
+            cursor: pointer;
+        }
+
+        &:hover {
+            background: whitesmoke;
+            transition: ease-in-out 125ms;
+        }
+    }
+
+
+}
