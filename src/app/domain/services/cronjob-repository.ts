@@ -9,7 +9,7 @@ export abstract class CronJobRepository {
 
     abstract getJob({ key }: { key: string }): Observable<CronJob>;
 
-    abstract getLogsForJob({ key }: { key: string }): Observable<Log>;
+    abstract getLogsForJob({ key }: { key: string }): Observable<HttpResponse<Log[]>>;
 
     abstract executeJob({ key }: { key: string }): Observable<HttpResponse<void>>;
 
