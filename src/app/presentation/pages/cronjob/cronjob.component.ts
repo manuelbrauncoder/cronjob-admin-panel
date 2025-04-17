@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GetLogsForCronJobService } from '../../../application/use-cases/get-logs-for-cron-job.service';
+import { GetLogsForCronJobService } from '../../../application/use-cases/get-logs-for-cron-job-use-case.service';
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';

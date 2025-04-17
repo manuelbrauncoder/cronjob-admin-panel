@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetLogsForCronJobService } from './get-logs-for-cron-job.service';
+import { GetLogsForCronJobService } from './get-logs-for-cron-job-use-case.service';
 
 describe('GetLogsForCronJobService', () => {
   let service: GetLogsForCronJobService;
