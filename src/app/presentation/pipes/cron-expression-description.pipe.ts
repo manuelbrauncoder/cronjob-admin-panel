@@ -7,7 +7,7 @@ import cronstrue from 'cronstrue';
 export class CronExpressionDescriptionPipe implements PipeTransform {
   transform(expression: string): string {
     try {
-      return cronstrue.toString(expression, { use24HourTimeFormat: true });
+      return cronstrue.toString(expression, { use24HourTimeFormat: false });
     } catch {
       return expression;
     }

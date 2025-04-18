@@ -4,7 +4,7 @@ import { GetCronjobsUseCaseService } from '../../../application/use-cases/get-cr
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
     BoolToTextPipe,
     HandleKeyPipe,
     CronExpressionDescriptionPipe,
+    CommonModule
   ],
   templateUrl: './cronjob-table.component.html',
   styleUrl: './cronjob-table.component.scss',

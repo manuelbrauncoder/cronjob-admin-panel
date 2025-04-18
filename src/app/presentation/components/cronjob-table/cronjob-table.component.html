@@ -1,24 +1,34 @@
 <table>
-    <caption>Cronjobs List</caption>
+    <caption>
+        <h2>Cronjobs</h2>
+    </caption>
     <thead>
         <tr>
             <th scope="col">Key</th>
             <th scope="col">Interval</th>
             <th scope="col">Last execution</th>
             <th scope="col">Error on last execution?</th>
+            <th scope="col">Logs</th>
             <th scope="col">Run</th>
         </tr>
     </thead>
-    @for (job of cronjobs; track $index) {
-    <tr (click)="redirectToDetail({ key: job.key })">
-        <td>{{ job.key | handleKey }}</td>
-        <td>{{ job.time | cronExpressionDescription }}</td>
-        <td>{{ job.lastExecution | date: 'short' }}</td>
-        <td>
-            <span>{{ job.errorOnLastExecution | boolToText }}</span>
-            <button (click)="redirectToLastLog({ key: job.key, event: $event })">Last Log</button>
-        </td>
-        <td><button (click)="executeCronJob({ key: job.key, event: $event })">Run</button></td>
-    </tr>
-    }
+    <tbody>
+        @for (job of cronjobs; track $index) {
+        <tr>
+            <td>{{ job.key | handleKey }}</td>
+            <td>{{ job.time | cronExpressionDescription }}</td>
+            <td>{{ job.lastExecution | date: 'short':'UTC' }}</td>
+            <td [ngClass]="job.errorOnLastExecution ? 'color-danger' : 'color-success' ">{{ job.errorOnLastExecution |
+                boolToText }}</td>
+            <td>
+                <div class="dFlexCC g-0-5">
+                    <button class="btn-secondary" (click)="redirectToLastLog({ key: job.key, event: $event })">Last
+                        Log</button>
+                    <button class="btn-primary" (click)="redirectToDetail({ key: job.key })">All Logs</button>
+                </div>
+            </td>
+            <td><button class="btn-danger" (click)="executeCronJob({ key: job.key, event: $event })">Run</button></td>
+        </tr>
+        }
+    </tbody>
 </table>
