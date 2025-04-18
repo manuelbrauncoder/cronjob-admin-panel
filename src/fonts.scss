@@ -142,3 +142,11 @@
     font-weight: 900;
     src: url('../public/assets/fonts/inter-v18-latin-900italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
+
+  @font-face {
+    font-family: 'mat-icon';
+    src: url('../public/assets/material-icons/MaterialIcons-Regular.ttf');
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }

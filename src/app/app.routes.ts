@@ -14,6 +14,20 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./presentation/pages/dashboard/dashboard.component').then(
+        (m) => m.DashboardComponent
+      ),
+  },
+  {
+    path: 'charts',
+    loadComponent: () =>
+      import('./presentation/pages/charts/charts.component').then(
+        (m) => m.ChartsComponent
+      ),
+  },
+  {
     path: 'cronjobs/:id',
     loadComponent: () =>
       import('./presentation/pages/cronjob/cronjob.component').then(

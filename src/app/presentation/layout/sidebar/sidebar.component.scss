@@ -24,6 +24,13 @@ aside {
             font-size: 1.25rem;
             padding: 0.5rem 1rem;
             transition: $transition-duration;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            i {
+                font-size: 1.4rem;
+            }
 
             &:hover {
                 transition: $transition-duration;
@@ -32,4 +39,8 @@ aside {
             }
         }
     }
+}
+
+.active-route {
+    background-color: darken($color: $color-accent, $amount: 5%);
 }
