@@ -5,6 +5,7 @@ $color-accent: #797ef3;
 $color-disabled: #686868;
 $color-light: #eceefe;
 $color-dark: #292929;
+$color-not-white: #f6f7f8;
 
 $content-limit: 1920px;
 $site-padding: 1rem;
@@ -26,8 +27,8 @@ body {
 }
 
 .btn-primary {
-    background: $color-main;
-    border: 1px solid $color-main;
+    background: $color-accent;
+    border: 1px solid $color-accent;
     cursor: pointer;
     padding: 0.25rem 0.75rem;
     border-radius: 6px;
@@ -37,7 +38,7 @@ body {
     &:hover {
         background: unset;
         color: $color-dark;
-        border: 1px solid $color-main;
+        border: 1px solid $color-accent;
         transition-duration: $transition-duration;
     }
 }
@@ -64,12 +65,12 @@ body {
     cursor: pointer;
     padding: 0.25rem 0.75rem;
     border-radius: 6px;
-    border: 1px solid $color-main;
+    border: 1px solid $color-accent;
     transition-duration: $transition-duration;
 
     &:hover {
         transition-duration: $transition-duration;
-        background: $color-main;
+        background: $color-accent;
         border-color: unset;
         color: $color-light;
     }

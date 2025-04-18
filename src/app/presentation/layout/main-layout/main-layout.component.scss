@@ -11,23 +11,23 @@
         grid-row: 1;
         grid-column: 2;
         grid-area: header;
-        background: lightgreen;
         padding: $site-padding;
+        height: 80px;
+        box-shadow: 0 4px 4px #0000001a;
     }
 
     .sidebar {
         height: 100%;
         grid-column: 1;
         grid-area: sidebar;
-        background: lightblue;
-        padding: $site-padding;
+        background-color: $color-accent;
     }
 
     .content {
         grid-row: 2;
         grid-column: 2;
         grid-area: content;
-        background: lightcoral;
+        background-color: $color-not-white;
         padding: $site-padding;
     }
 }
