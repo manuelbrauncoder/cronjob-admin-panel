@@ -10,7 +10,7 @@ import { CronJob } from '../../../domain/models/cronjob.interface';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Duration } from '../../interfaces/duration.interface';
 
 @Component({
@@ -20,6 +20,7 @@ import { Duration } from '../../interfaces/duration.interface';
     CronExpressionDescriptionPipe,
     HandleKeyPipe,
     DatePipe,
+    CommonModule
   ],
   templateUrl: './cronjob.component.html',
   styleUrl: './cronjob.component.scss',

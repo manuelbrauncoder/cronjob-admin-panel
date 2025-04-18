@@ -11,11 +11,14 @@
         </div>
         <div>
             <span>Error on last Execution? </span>
-            <span>{{ cronJob?.errorOnLastExecution | boolToText }}</span>
+            <span [ngClass]="cronJob?.errorOnLastExecution ? 'color-danger' : 'color-success'">{{ cronJob?.errorOnLastExecution | boolToText }}</span>
         </div>
     </div>
 
     <table>
+        <caption>
+            <h2>Cronjob logs</h2>
+        </caption>
         <thead>
             <tr>
                 <th scope="column">Start time</th>

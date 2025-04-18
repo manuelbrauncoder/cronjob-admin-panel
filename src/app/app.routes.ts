@@ -35,7 +35,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'log/:id',
+    path: 'cronjobs/log/:id',
     loadComponent: () =>
       import('./presentation/pages/log/log.component').then(
         (m) => m.LogComponent

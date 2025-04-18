@@ -13,5 +13,5 @@ export abstract class CronJobRepository {
 
     abstract executeJob({ key }: { key: string }): Observable<HttpResponse<void>>;
 
-    abstract getLastExecution({ key }: { key: string }): Observable<CronJob>;
+    abstract getLastExecution({ key }: { key: string }): Observable<HttpResponse<Log>>;
 }

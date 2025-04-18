@@ -24,6 +24,19 @@ html {
 
 body {
     font-family: 'Inter';
+    color: $color-dark;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $color-dark;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $color-dark;
 }
 
 .btn-primary {
@@ -118,6 +131,7 @@ table {
 
     caption {
         margin-bottom: 0.5rem;
+        text-align: left;
     }
 
     thead {

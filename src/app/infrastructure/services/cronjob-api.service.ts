@@ -34,8 +34,8 @@ export class CronjobApiService extends CronJobRepository {
     return this.http.patch<void>(url, {}, { observe: 'response' });
   }
 
-  getLastExecution({ key }: { key: string }): Observable<CronJob> {
+  getLastExecution({ key }: { key: string }): Observable<HttpResponse<Log>> {
     const url = `${this.baseUrl}/${key}/lastExecution`;
-    return this.http.get<CronJob>(url);
+    return this.http.get<Log>(url, { observe: 'response' });
   }
 }

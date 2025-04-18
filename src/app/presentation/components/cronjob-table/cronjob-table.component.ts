@@ -82,6 +82,6 @@ export class CronjobTableComponent implements OnInit {
 
   redirectToLastLog({ key, event }: { key: string; event: MouseEvent }) {
     event.stopPropagation();
-    this.router.navigate(['/log', key])
+    this.router.navigate(['/cronjobs/log', key])
   }
 }
