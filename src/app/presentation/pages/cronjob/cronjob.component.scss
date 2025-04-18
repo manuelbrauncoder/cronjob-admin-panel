@@ -1,0 +1,7 @@
+@use '../../../../styles.scss' as *;
+
+section {
+    >div >div span:first-of-type {
+        font-weight: 700;
+    }
+}

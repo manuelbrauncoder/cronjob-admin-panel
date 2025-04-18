@@ -1,0 +1,33 @@
+@use '../../../../styles.scss' as *;
+
+.main-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "sidebar header" "sidebar content";
+
+    .header {
+        grid-row: 1;
+        grid-column: 2;
+        grid-area: header;
+        background: lightgreen;
+        padding: $site-padding;
+    }
+
+    .sidebar {
+        height: 100%;
+        grid-column: 1;
+        grid-area: sidebar;
+        background: lightblue;
+        padding: $site-padding;
+    }
+
+    .content {
+        grid-row: 2;
+        grid-column: 2;
+        grid-area: content;
+        background: lightcoral;
+        padding: $site-padding;
+    }
+}

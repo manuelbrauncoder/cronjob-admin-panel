@@ -1,17 +1,64 @@
-<section>
-    <h2>{{ cronJobKey }}</h2>
-    <div>
-        
+<section class="dFlexColumnStart g-1">
+    <h2>{{ cronJob?.key | handleKey }}</h2>
+    <div class="dFlexColumnStart g-0-5">
+        <div>
+            <span>Interval: </span>
+            <span>{{ cronJob?.time | cronExpressionDescription }}</span>
+        </div>
+        <div>
+            <span>Last Execution: </span>
+            <span>{{ cronJob?.lastExecution | date: 'short': 'UTC' }}</span>
+        </div>
+        <div>
+            <span>Error on last Execution? </span>
+            <span>{{ cronJob?.errorOnLastExecution | boolToText }}</span>
+        </div>
     </div>
 
-    <div class="list">
-        @for (log of cronJobLogs; track $index) {
-            <div class="log">
-                <span>{{ log.startTime }}</span>
-                <span>{{ log.endTime }}</span>
-                <span>{{ log.success }}</span>
-                <span>{{ log.output }}</span>
-            </div>
-        }
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th scope="column">Start time</th>
+                <th scope="column">End time</th>
+                <th scope="column">Duration</th>
+                <th scope="column">Success</th>
+                <th scope="column">Output</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (log of cronJobLogs; track $index) {
+            <tr>
+                <td>{{log.startTime | date: 'short': 'UTC' }}</td>
+                <td>
+                    @if (log.endTime) {
+                    {{log.endTime | date: 'short': 'UTC' }}
+                    } @else {
+                    N/A
+                    }
+                </td>
+                <td>
+                    @if (log.endTime) {
+                        {{ calculateDuration({ startTime: log.startTime, endTime: log.endTime })}}
+                    } @else {
+                    N/A
+                    }
+                </td>
+                <td>
+                    @if (log.success !== undefined) {
+                    {{log.success | boolToText }}
+                    } @else {
+                    N/A
+                    }
+                </td>
+                <td class="ch-50">
+                    @if (log.output) {
+                    {{log.output }}
+                    } @else {
+                    N/A
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </section>

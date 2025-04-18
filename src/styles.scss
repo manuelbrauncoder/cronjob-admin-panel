@@ -1,3 +1,16 @@
+$color-danger: #ed1e79;
+$color-success: #92c83e;
+$color-main: #444df2;
+$color-accent: #797ef3;
+$color-disabled: #686868;
+$color-light: #eceefe;
+$color-dark: #292929;
+
+$content-limit: 1920px;
+$site-padding: 1rem;
+
+$transition-duration: 125ms;
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -11,18 +24,6 @@ html {
 body {
     font-family: 'Inter';
 }
-
-$color-danger: #ed1e79;
-$color-success: #92c83e;
-$color-main: #444df2;
-$color-accent: #797ef3;
-$color-disabled: #686868;
-$color-light: #eceefe;
-$color-dark: #292929;
-
-$content-limit: 1920px;
-
-$transition-duration: 125ms;
 
 .btn-primary {
     background: $color-main;
@@ -80,8 +81,19 @@ $transition-duration: 125ms;
     align-items: center;
 }
 
+.dFlexColumnStart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
 .g-0-5 {
     gap: 0.5rem;
+}
+
+.g-1 {
+    gap: 1rem;
 }
 
 .color-success {
@@ -90,4 +102,49 @@ $transition-duration: 125ms;
 
 .color-danger {
     color: $color-danger;
+}
+
+.ch-50 {
+    max-width: 50ch;
+}
+
+table {
+    display: table;
+    border-spacing: 2px;
+    border-collapse: collapse;
+    text-indent: 0;
+    text-align: left;
+
+    caption {
+        margin-bottom: 0.5rem;
+    }
+
+    thead {
+        background: $color-light;
+    }
+
+    tbody {
+        background: lighten($color: $color-light, $amount: 5%);
+    }
+
+    tr {
+        transition: ease-in-out 125ms;
+
+        th,
+        td {
+            border: 1px solid $color-accent;
+            padding: 0.5rem 0.5rem;
+            align-content: flex-start;
+        }
+
+        td .btn-danger {
+            width: 50px;
+            height: 25px;
+        }
+
+        &:hover {
+            background: $color-light;
+            transition: ease-in-out 125ms;
+        }
+    }
 }

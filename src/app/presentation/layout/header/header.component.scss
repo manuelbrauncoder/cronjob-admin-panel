@@ -1,0 +1,6 @@
+@use '../../../../styles.scss' as *;
+
+header {
+    display: flex;
+    justify-content: space-between;
+}

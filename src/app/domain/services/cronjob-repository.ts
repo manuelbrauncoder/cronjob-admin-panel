@@ -7,7 +7,7 @@ export abstract class CronJobRepository {
 
     abstract getJobList(): Observable<HttpResponse<CronJob[]>>;
 
-    abstract getJob({ key }: { key: string }): Observable<CronJob>;
+    abstract getJob({ key }: { key: string }): Observable<HttpResponse<CronJob>>;
 
     abstract getLogsForJob({ key }: { key: string }): Observable<HttpResponse<Log[]>>;
 
