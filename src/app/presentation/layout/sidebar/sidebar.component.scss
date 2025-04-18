@@ -8,6 +8,34 @@ aside {
 
     .logo {
         height: 80px;
+        font-size: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: $site-padding;
+        text-decoration: none;
+        cursor: pointer;
+        transition: $transition-duration;
+
+        &:hover {
+            transition: $transition-duration;
+            scale: 1.2;
+        }
+
+        span:nth-child(1) {
+            color: $color-not-white;
+            margin-right: 3px;
+        }
+
+        span:nth-child(2) {
+            color: darken($color: $color-accent, $amount: 5%);
+        }
+
+        span:nth-child(3) {
+            color: $color-not-white;
+            transform: translateY(5px);
+        }
     }
 
     nav {
