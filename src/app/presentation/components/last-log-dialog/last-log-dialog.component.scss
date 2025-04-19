@@ -1,0 +1,16 @@
+@use '../../../../styles.scss' as *;
+
+section {
+    border-radius: 6px;
+    h2 {
+        width: 100%;
+        background-color: $color-light;
+        padding: $site-padding;
+        border-radius: 6px 6px 0 0;
+        color: $color-dark;
+    }
+
+    app-log-list-row {
+        padding: $site-padding;
+    }
+}

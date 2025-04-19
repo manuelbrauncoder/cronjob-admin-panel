@@ -23,16 +23,16 @@ import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-but
 })
 export class CronjobListComponent {
   cronJobs = model.required<CronJob[]>();
+  cronJobKey = model<string>();
   uiService = inject(UiService);
   router = inject(Router);
-  cronJobKey: string = '';
 
   redirectToDetail({ key }: { key: string }): void {
     this.router.navigate(['/cronjobs', key]);
   }
 
   showLastLogDialog({ key }: { key: string }): void {
-    this.cronJobKey = key;
+    this.cronJobKey.set(key);
     this.uiService.isLastLogDialogPresented = true;
   }
 

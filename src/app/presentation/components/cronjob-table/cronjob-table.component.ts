@@ -1,4 +1,4 @@
-import { Component, inject, model, OnInit } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { CronJob } from '../../../domain/models/cronjob.interface';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
@@ -6,7 +6,6 @@ import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 import { Router } from '@angular/router';
 import { UiService } from '../../services/ui.service';
-import { LastLogDialogComponent } from '../last-log-dialog/last-log-dialog.component';
 import { fadeIn } from '../../utils/animations';
 import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-button.component";
 
@@ -18,7 +17,6 @@ import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-but
     HandleKeyPipe,
     CronExpressionDescriptionPipe,
     CommonModule,
-    LastLogDialogComponent,
     ExecuteJobButtonComponent
 ],
   templateUrl: './cronjob-table.component.html',
@@ -27,12 +25,13 @@ import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-but
 })
 export class CronjobTableComponent {
   cronJobs = model.required<CronJob[]>();
+  cronJobKey = model<string>();
+
   uiService = inject(UiService);
   router = inject(Router);
-  cronJobKey: string = '';
 
   showLastLogDialog({ key }: { key: string }): void {
-    this.cronJobKey = key;
+    this.cronJobKey.set(key);
     this.uiService.isLastLogDialogPresented = true;
   }
 

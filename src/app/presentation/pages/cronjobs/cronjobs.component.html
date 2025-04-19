@@ -1,3 +1,14 @@
-<app-cronjob-table [(cronJobs)]="cronJobs"></app-cronjob-table>
+<div class="filter">
 
-<app-cronjob-list [(cronJobs)]="cronJobs"></app-cronjob-list>
+</div>
+
+<app-cronjob-table [(cronJobs)]="cronJobs" [(cronJobKey)]="selectedJobKey"></app-cronjob-table>
+
+<app-cronjob-list [(cronJobs)]="cronJobs" [(cronJobKey)]="selectedJobKey"></app-cronjob-list>
+
+@if (uiService.isLastLogDialogPresented) {
+    <div @fadeIn class="dialog">
+        <app-last-log-dialog [(cronJobKey)]="selectedJobKey"></app-last-log-dialog>
+    </div>
+    <div (click)="hideLastLogDialog()" class="dialog-bg"></div>
+    }

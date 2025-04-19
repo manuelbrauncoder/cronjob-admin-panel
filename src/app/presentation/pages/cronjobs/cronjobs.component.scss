@@ -1,0 +1,17 @@
+@use '../../../../styles.scss' as *;
+
+app-cronjob-table {
+    display: none;
+
+    @media(min-width: 1000px) {
+        display: block;
+    }
+}
+
+app-cronjob-list {
+    display: block;
+
+    @media(min-width: 1000px) {
+        display: none;
+    }
+}

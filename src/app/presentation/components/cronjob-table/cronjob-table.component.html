@@ -29,10 +29,3 @@
         }
     </tbody>
 </table>
-
-@if (uiService.isLastLogDialogPresented) {
-<div @fadeIn class="dialog">
-    <app-last-log-dialog [(cronJobKey)]="cronJobKey"></app-last-log-dialog>
-</div>
-<div (click)="hideLastLogDialog()" class="dialog-bg"></div>
-}
