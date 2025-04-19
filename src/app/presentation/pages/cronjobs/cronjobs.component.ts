@@ -9,6 +9,7 @@ import { HttpResponse } from '@angular/common/http';
 import { CronjobListComponent } from '../../components/cronjob-list/cronjob-list.component';
 import { LastLogDialogComponent } from '../../components/last-log-dialog/last-log-dialog.component';
 import { UiService } from '../../services/ui.service';
+import { fadeIn } from '../../utils/animations';
 
 @Component({
   selector: 'app-cronjobs',
@@ -19,6 +20,7 @@ import { UiService } from '../../services/ui.service';
   ],
   templateUrl: './cronjobs.component.html',
   styleUrl: './cronjobs.component.scss',
+  animations: [fadeIn],
   providers: [
     GetCronjobsUseCaseService,
     {
