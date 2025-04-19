@@ -10,6 +10,9 @@ import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 import { ExecuteCronJobUseCaseService } from '../../../application/use-cases/execute-cron-job-use-case.service';
 import { Router } from '@angular/router';
+import { UiService } from '../../services/ui.service';
+import { LastLogDialogComponent } from '../last-log-dialog/last-log-dialog.component';
+import { fadeIn, slideFromBottom, slideFromTop } from '../../utils/animations';
 
 @Component({
   selector: 'app-cronjob-table',
@@ -18,7 +21,8 @@ import { Router } from '@angular/router';
     BoolToTextPipe,
     HandleKeyPipe,
     CronExpressionDescriptionPipe,
-    CommonModule
+    CommonModule,
+    LastLogDialogComponent,
   ],
   templateUrl: './cronjob-table.component.html',
   styleUrl: './cronjob-table.component.scss',
@@ -34,15 +38,27 @@ import { Router } from '@angular/router';
       useClass: CronjobApiService,
     },
   ],
+  animations: [slideFromBottom, slideFromTop, fadeIn],
 })
 export class CronjobTableComponent implements OnInit {
   cronjobs: CronJob[] = [];
   getCronJobsUseCase = inject(GetCronjobsUseCaseService);
   executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
+  uiService = inject(UiService);
   router = inject(Router);
+  cronJobKey: string = '';
 
   ngOnInit(): void {
     this.getCronJobs();
+  }
+
+  showLastLogDialog({ key }: { key: string }): void {
+    this.cronJobKey = key;
+    this.uiService.isLastLogDialogPresented = true;
+  }
+
+  hideLastLogDialog(): void {
+    this.uiService.isLastLogDialogPresented = false;
   }
 
   executeCronJob({ key, event }: { key: string; event: MouseEvent }) {
@@ -64,7 +80,7 @@ export class CronjobTableComponent implements OnInit {
     });
   }
 
-  getCronJobs() {
+  getCronJobs(): void {
     this.getCronJobsUseCase.execute().subscribe({
       next: (response: HttpResponse<CronJob[]>) => {
         this.cronjobs = response.body as CronJob[];
@@ -76,12 +92,7 @@ export class CronjobTableComponent implements OnInit {
     });
   }
 
-  redirectToDetail({ key }: { key: string }) {
+  redirectToDetail({ key }: { key: string }): void {
     this.router.navigate(['/cronjobs', key]);
-  }
-
-  redirectToLastLog({ key, event }: { key: string; event: MouseEvent }) {
-    event.stopPropagation();
-    this.router.navigate(['/cronjobs/log', key])
   }
 }

@@ -19,7 +19,7 @@
                 boolToText }}</td>
             <td>
                 <div class="dFlexCC g-0-5">
-                    <button class="btn-secondary" (click)="redirectToLastLog({ key: job.key, event: $event })">Last
+                    <button class="btn-secondary" (click)="showLastLogDialog({key: job.key})">Last
                         Log</button>
                     <button class="btn-primary" (click)="redirectToDetail({ key: job.key })">All Logs</button>
                 </div>
@@ -29,3 +29,10 @@
         }
     </tbody>
 </table>
+
+@if (uiService.isLastLogDialogPresented) {
+<div @fadeIn class="dialog">
+    <app-last-log-dialog [(cronJobKey)]="cronJobKey"></app-last-log-dialog>
+</div>
+<div (click)="hideLastLogDialog()" class="dialog-bg"></div>
+}

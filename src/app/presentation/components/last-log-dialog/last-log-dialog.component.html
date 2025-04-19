@@ -1,0 +1,41 @@
+<section class="dFlexColumnStart g-0-5">
+    <h2>Last log for {{ lastLog?.key | handleKey }}</h2>
+
+    @if (lastLog) {
+    <div class="dFlexColumnStart g-0-5">
+        <div class="time">
+            <h3 class="mb-0-25">Time:</h3>
+            <div>
+                <span>{{ lastLog.startTime | date: 'short':'UTC' }} - </span>
+                <span>
+                    @if (lastLog.endTime === undefined) {
+                    N/A
+                    } @else {
+                    {{ lastLog.endTime | date: 'short':'UTC' }}
+                    }
+                </span>
+            </div>
+        </div>
+        <div class="duration">
+            <h3 class="mb-0-25">Duration:</h3>
+            <span>{{ calculateDuration({ startTime: lastLog.startTime, endTime: lastLog.endTime })}}</span>
+        </div>
+        <div class="success">
+            <h3 class="mb-0-25">Error?</h3>
+            <span>{{ lastLog.success | boolToText }}</span>
+        </div>
+        <div class="output">
+            <h3 class="mb-0-25">Output:</h3>
+            <span>
+                @if (lastLog.output) {
+                    {{ lastLog.output }}
+                } @else {
+                    N/A
+                }
+            </span>
+        </div>
+    </div>
+    } @else {
+    <span>N/A</span>
+    }
+</section>

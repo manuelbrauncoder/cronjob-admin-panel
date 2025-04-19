@@ -12,6 +12,7 @@ import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-descr
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Duration } from '../../interfaces/duration.interface';
+import { DurationHelper } from '../../utils/DurationHelper';
 
 @Component({
   selector: 'app-cronjob',
@@ -20,7 +21,7 @@ import { Duration } from '../../interfaces/duration.interface';
     CronExpressionDescriptionPipe,
     HandleKeyPipe,
     DatePipe,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './cronjob.component.html',
   styleUrl: './cronjob.component.scss',
@@ -35,7 +36,7 @@ import { Duration } from '../../interfaces/duration.interface';
       provide: CronJobRepository,
       useClass: CronjobApiService,
     },
-  ],
+  ]
 })
 export class CronjobComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute);
@@ -47,29 +48,17 @@ export class CronjobComponent implements OnInit {
   cronJobLogs: Log[] = [];
   cronJob?: CronJob;
 
+  durationHelper: DurationHelper = new DurationHelper();
+
   ngOnInit(): void {
     this.cronJobKey = this.activatedRoute.snapshot.paramMap.get('id');
     this.getCronJob();
     this.getLogs();
   }
 
-
-calculateDuration({ startTime, endTime}: Duration): string {
-  if (endTime == null) {
-    return '';
+  calculateDuration({ startTime, endTime }: Duration): string {
+    return this.durationHelper.calculateDuration({ startTime, endTime });
   }
-
-  const start = Date.parse(startTime);
-  const end = Date.parse(endTime);
-  const diff = end - start;
-
-  const mins = Math.floor(diff / 60000);
-  const hrs = Math.floor(mins / 60);
-  const remM = mins % 60;
-  
-  return `${hrs}h ${remM}m`;
-}
-
 
   getCronJob() {
     if (this.cronJobKey) {

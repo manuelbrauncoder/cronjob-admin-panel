@@ -35,13 +35,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'cronjobs/log/:id',
-    loadComponent: () =>
-      import('./presentation/pages/log/log.component').then(
-        (m) => m.LogComponent
-      ),
-  },
-  {
     path: '**',
     redirectTo: 'not-found',
     pathMatch: 'full',

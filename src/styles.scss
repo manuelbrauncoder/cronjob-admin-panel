@@ -35,7 +35,7 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 700;
     color: $color-dark;
 }
 
@@ -110,6 +110,10 @@ h2 {
     gap: 1rem;
 }
 
+.mb-0-25 {
+    margin-bottom: 0.25rem;
+}
+
 .color-success {
     color: $color-success
 }
@@ -174,4 +178,27 @@ table {
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $color-not-white;
+    padding: $site-padding;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 3;
+    border-radius: 6px;
+}
+
+.dialog-bg {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
 }
