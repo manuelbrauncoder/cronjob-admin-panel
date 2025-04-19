@@ -13,6 +13,8 @@ import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Duration } from '../../interfaces/duration.interface';
 import { DurationHelper } from '../../utils/DurationHelper';
+import { LogTableComponent } from "../../components/log-table/log-table.component";
+import { LogListComponent } from "../../components/log-list/log-list.component";
 
 @Component({
   selector: 'app-cronjob',
@@ -22,7 +24,9 @@ import { DurationHelper } from '../../utils/DurationHelper';
     HandleKeyPipe,
     DatePipe,
     CommonModule,
-  ],
+    LogTableComponent,
+    LogListComponent
+],
   templateUrl: './cronjob.component.html',
   styleUrl: './cronjob.component.scss',
   providers: [

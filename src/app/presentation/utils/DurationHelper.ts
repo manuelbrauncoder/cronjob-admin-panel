@@ -2,7 +2,7 @@ import { Duration } from '../interfaces/duration.interface';
 
 export class DurationHelper {
   calculateDuration({ startTime, endTime }: Duration): string {
-    if (endTime == null) {
+    if (endTime == null || startTime == null) {
       return '';
     }
 

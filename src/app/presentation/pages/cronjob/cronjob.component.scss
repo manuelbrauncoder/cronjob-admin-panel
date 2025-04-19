@@ -4,4 +4,20 @@ section {
     >div >div span:first-of-type {
         font-weight: 700;
     }
+
+    app-log-table {
+        display: none;
+    
+        @media(min-width: 1000px) {
+            display: block;
+        }
+    }
+    
+    app-log-list {
+        display: block;
+    
+        @media(min-width: 1000px) {
+            display: none;
+        }
+    }
 }

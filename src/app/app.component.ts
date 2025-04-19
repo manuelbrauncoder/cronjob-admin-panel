@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
 
   constructor(private destroyRef: DestroyRef) {}
 
+  /**
+   * initializes the cdk breakpoint observer
+   * show sidebar > 1000px and hide below 1000px
+   */
   initBreakpointObserver(): void {
     this.breakpointObserver
       .getObserver()

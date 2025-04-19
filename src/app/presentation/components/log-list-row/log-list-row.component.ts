@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component, Input, model } from '@angular/core';
 import { Log } from '../../../domain/models/log.interface';
 import { DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
@@ -12,7 +12,7 @@ import { Duration } from '../../interfaces/duration.interface';
   styleUrl: './log-list-row.component.scss'
 })
 export class LogListRowComponent {
-  log = model.required<Log>();  
+  @Input() log?: Log; 
   durationHelper: DurationHelper = new DurationHelper();
 
   calculateDuration({ startTime, endTime }: Duration): string {

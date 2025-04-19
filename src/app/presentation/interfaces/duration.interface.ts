@@ -1,4 +1,4 @@
 export interface Duration {
-    startTime: string;
+    startTime?: string;
     endTime?: string;
 }
