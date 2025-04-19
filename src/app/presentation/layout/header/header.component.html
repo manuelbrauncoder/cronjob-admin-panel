@@ -1,13 +1,9 @@
 <header>
     <h1>Admin Panel</h1>
-    <div (click)="uiService.toggleSidebar()" class="burgerMenu" [ngClass]="!uiService.isSidebarPresented ? 'burgerMenu' : 'burgerMenuClosed'">
+    <div (click)="uiService.toggleSidebar()" class="burgerMenu"
+        [ngClass]="!uiService.isSidebarPresented ? 'burgerMenu' : 'burgerMenuClosed'">
         <span class="line top"></span>
         <span class="line middle"></span>
         <span class="line bottom"></span>
     </div>
-
-    @if (uiService.isSidebarPresented) {
-        <app-sidebar @slideIn></app-sidebar>
-        <div @fadeIn (click)="uiService.toggleSidebar()" class="menu-background"></div>
-        }
 </header>

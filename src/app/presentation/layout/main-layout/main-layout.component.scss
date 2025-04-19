@@ -12,8 +12,8 @@
         grid-column: 2;
         grid-area: header;
         padding: $site-padding;
-        height: 80px;
         box-shadow: 0 4px 4px #0000001a;
+        height: 80px;
 
         @media (max-width: 1000px) {
             background: $color-accent;
@@ -25,6 +25,13 @@
         grid-column: 1;
         grid-area: sidebar;
         background-color: $color-accent;
+
+        @media(max-width: 1000px) {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 200px;
+        }
     }
 
     .content {
@@ -40,9 +47,16 @@
         grid-template-areas:
             "header"
             "content";
-
-        .sidebar {
-            display: none;
-        }
     }
+}
+
+.sidebar-hide {
+    transform: translateX(-100%);
+    transition-duration: 300ms;
+}
+
+.sidebar-show {
+    transform: translateX(0);
+    transition-duration: 300ms;
+
 }

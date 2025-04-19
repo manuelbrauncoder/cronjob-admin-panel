@@ -2,7 +2,7 @@
     <div class="header">
         <app-header></app-header>
     </div>
-    <div class="sidebar">
+    <div class="sidebar" [ngClass]="{'sidebar-hide': !uiService.isSidebarPresented, 'sidebar-show': uiService.isSidebarPresented}">
         <app-sidebar></app-sidebar>
     </div>
     <div class="content">
