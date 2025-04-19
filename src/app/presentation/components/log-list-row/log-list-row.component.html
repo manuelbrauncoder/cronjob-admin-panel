@@ -1,0 +1,33 @@
+<div class="dFlexColumnStart g-0-5">
+    <div class="time">
+        <h3 class="mb-0-25">Time:</h3>
+        <div>
+            <span>{{ log().startTime | date: 'short':'UTC' }} - </span>
+            <span>
+                @if (log().endTime === undefined) {
+                N/A
+                } @else {
+                {{ log().endTime | date: 'short':'UTC' }}
+                }
+            </span>
+        </div>
+    </div>
+    <div class="duration">
+        <h3 class="mb-0-25">Duration:</h3>
+        <span>{{ calculateDuration({ startTime: log().startTime, endTime: log().endTime })}}</span>
+    </div>
+    <div class="success">
+        <h3 class="mb-0-25">Error?</h3>
+        <span>{{ log().success | boolToText }}</span>
+    </div>
+    <div class="output">
+        <h3 class="mb-0-25">Output:</h3>
+        <span>
+            @if (log().output) {
+                {{ log().output }}
+            } @else {
+                N/A
+            }
+        </span>
+    </div>
+</div>

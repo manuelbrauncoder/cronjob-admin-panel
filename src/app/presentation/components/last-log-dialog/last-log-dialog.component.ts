@@ -5,14 +5,11 @@ import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.
 import { HttpResponse } from '@angular/common/http';
 import { Log } from '../../../domain/models/log.interface';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
-import { DatePipe } from '@angular/common';
-import { DurationHelper } from '../../utils/DurationHelper';
-import { Duration } from '../../interfaces/duration.interface';
-import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
+import { LogListRowComponent } from "../log-list-row/log-list-row.component";
 
 @Component({
   selector: 'app-last-log-dialog',
-  imports: [HandleKeyPipe, DatePipe, BoolToTextPipe],
+  imports: [HandleKeyPipe, LogListRowComponent],
   templateUrl: './last-log-dialog.component.html',
   styleUrl: './last-log-dialog.component.scss',
   providers: [
@@ -27,14 +24,9 @@ export class LastLogDialogComponent implements OnInit {
   cronJobKey = model.required<string>();
   getLastLogUseCase = inject(GetLastLogUseCaseService);
   lastLog?: Log;
-  durationHelper: DurationHelper = new DurationHelper();
 
   ngOnInit(): void {
     this.getLastLog();
-  }
-
-  calculateDuration({ startTime, endTime }: Duration): string {
-    return this.durationHelper.calculateDuration({ startTime, endTime });
   }
 
   getLastLog() {

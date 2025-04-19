@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @for (job of cronjobs; track $index) {
+        @for (job of cronJobs(); track $index) {
         <tr>
             <td>{{ job.key | handleKey }}</td>
             <td>{{ job.time | cronExpressionDescription }}</td>
@@ -24,7 +24,7 @@
                     <button class="btn-primary" (click)="redirectToDetail({ key: job.key })">All Logs</button>
                 </div>
             </td>
-            <td><button class="btn-danger" (click)="executeCronJob({ key: job.key, event: $event })">Run</button></td>
+            <td><app-execute-job-button [(cronJobKey)]="job.key"></app-execute-job-button></td>
         </tr>
         }
     </tbody>

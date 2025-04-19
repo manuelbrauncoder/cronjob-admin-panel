@@ -1,0 +1,24 @@
+<section>
+    @for (job of cronJobs(); track $index) {
+        <div class="job">
+            <h3>{{ job.key | handleKey }}</h3>
+            <div class="interval">
+                <span>{{ job.time | cronExpressionDescription }}</span>
+            </div>
+            <div class="last">
+                <span>{{ job.lastExecution | date: 'short':'UTC' }}</span>
+            </div>
+            <div class="error">
+                <span [ngClass]="job.errorOnLastExecution ? 'color-danger' : 'color-success' ">{{ job.errorOnLastExecution | boolToText }}</span>
+            </div>
+            <div class="dFlexJCStart g-0-5">
+                <button class="btn-secondary" (click)="showLastLogDialog({key: job.key})">Last
+                    Log</button>
+                <button class="btn-primary" (click)="redirectToDetail({ key: job.key })">All Logs</button>
+            </div>
+            <div class="run">
+                <app-execute-job-button [(cronJobKey)]="job.key"></app-execute-job-button>
+            </div>
+        </div>
+    }
+</section>

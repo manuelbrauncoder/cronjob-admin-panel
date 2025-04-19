@@ -1,0 +1,32 @@
+@use '../../../../styles.scss' as *;
+
+
+
+section {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+
+    @media(max-width: 1199px) {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+
+    @media(max-width: 699px) {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }
+
+    .job {
+        border: 1px solid $color-accent;
+        padding: $site-padding;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 6px;
+
+        .run {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

@@ -60,6 +60,7 @@ h2 {
     background: unset;
     color: $color-danger;
     font-weight: 500;
+    font-size: 1.1rem;
     border: unset;
     cursor: pointer;
     padding: 0.25rem 0.75rem;
@@ -92,6 +93,12 @@ h2 {
 .dFlexCC {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.dFlexJCStart {
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
