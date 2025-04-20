@@ -2,7 +2,7 @@
     <h2>Last log for {{ lastLog?.key | handleKey }}</h2>
 
     @if (lastLog) {
-        <app-log-list-row [log]="lastLog"></app-log-list-row>
+        <app-log-list-row [appearsInList]="false" [log]="lastLog"></app-log-list-row>
     } @else {
     <span>N/A</span>
     }

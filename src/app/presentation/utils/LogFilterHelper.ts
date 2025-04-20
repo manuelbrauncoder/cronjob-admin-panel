@@ -1,8 +1,8 @@
 import { Log } from '../../domain/models/log.interface';
 import { ErrorFilterEnum } from '../enums/ErrorFilterEnum';
+import { SortOrder } from '../enums/SortOrder';
 
 export class LogFilterHelper {
-
   /**
    * Filter the given Log[] by the date range
    *
@@ -30,6 +30,8 @@ export class LogFilterHelper {
 
   /**
    *
+   * Show all or only the logs with an error
+   * 
    * @param logs
    * @param show
    * @returns
@@ -45,5 +47,14 @@ export class LogFilterHelper {
       return logs;
     }
     return logs.filter((log) => log.success === false);
+  }
+
+  static sortByStartTime(params: { logs: Log[]; sort: SortOrder }): Log[] {
+    const { logs, sort } = params;
+    return [...logs].sort((a, b) => {
+      const aMs = new Date(a.startTime).getTime();
+      const bMs = new Date(b.startTime).getTime();
+      return sort === SortOrder.Ascending ? aMs - bMs : bMs - aMs;
+    });
   }
 }

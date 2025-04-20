@@ -1,31 +1,48 @@
 @use '../../../../styles.scss' as *;
 
 section {
-    
+
     .filter {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        border: 1px solid $color-accent;
+        padding: $site-padding;
 
-        button {
+        .header {
             display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            width: fit-content;
+            justify-content: space-between;
+
+            button {
+                font-size: 24px;
+                border: unset;
+                background: unset;
+                cursor: pointer;
+                transition-duration: $transition-duration;
+
+                &:hover {
+                    transition-duration: $transition-duration;
+                    color: $color-accent;
+                }
+            }
+        }
+
+        @media(max-width: 1000px) {
+            border-radius: 6px;
         }
     }
 
     app-log-table {
         display: none;
-    
+
         @media(min-width: 1000px) {
             display: block;
         }
     }
-    
+
     app-log-list {
         display: block;
-    
+
         @media(min-width: 1000px) {
             display: none;
         }

@@ -1,12 +1,9 @@
 @use '../../../../styles.scss' as *;
 
 .card {
-    border: 1px solid $color-accent;
-    padding: $site-padding;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 6px;
     transition: $transition-duration;
     height: 100%;
@@ -27,4 +24,11 @@
         display: flex;
         justify-content: center;
     }
+}
+
+.single-card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: $site-padding;
+    border: 1px solid $color-accent;
+
 }

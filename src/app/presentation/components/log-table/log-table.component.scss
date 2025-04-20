@@ -1,0 +1,18 @@
+@use '../../../../styles.scss' as *;
+
+.start-time-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    i {
+        font-size: 20px;
+        cursor: pointer;
+        transition-duration: $transition-duration;
+
+        &:hover {
+            color: $color-accent;
+            transition-duration: $transition-duration;
+        }
+    }
+}

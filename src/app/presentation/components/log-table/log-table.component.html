@@ -1,7 +1,12 @@
 <table>
     <thead>
         <tr>
-            <th scope="column">Start time</th>
+            <th scope="column">
+                <div class="start-time-head">
+                    <span>Start time</span>
+                    <i (click)="toggleSortOrder()" class="mat-icon">swap_vert</i>
+                </div>
+            </th>
             <th scope="column">End time</th>
             <th scope="column">Duration</th>
             <th scope="column">Success</th>
@@ -9,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @for (log of cronJobLogs(); track $index) {
+        @for (log of cronJobLogs; track $index) {
         <tr>
             <td>{{log.startTime | date: 'short': 'UTC' }}</td>
             <td>

@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { LogFilterHelper } from '../../utils/LogFilterHelper';
 import { ErrorFilterEnum } from '../../enums/ErrorFilterEnum';
+import { SortOrder } from '../../enums/SortOrder';
 
 @Component({
   selector: 'app-cronjob',
@@ -63,6 +64,7 @@ export class CronjobComponent implements OnInit {
   cronJob?: CronJob;
 
   show: ErrorFilterEnum = ErrorFilterEnum.All;
+  sortOrder: SortOrder = SortOrder.Ascending;
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -80,8 +82,10 @@ export class CronjobComponent implements OnInit {
     const end = this.range.get('end')?.value;
 
     let result = this.cronJobLogs;
+    
     result = LogFilterHelper.byDateRange({ logs: result, start: start, end: end })
     result = LogFilterHelper.byErrorStatus({ logs: result, show: this.show })
+    result = LogFilterHelper.sortByStartTime({ logs: result, sort: this.sortOrder })
 
     return result;
   }

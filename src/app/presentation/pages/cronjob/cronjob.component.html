@@ -8,23 +8,24 @@
     </div>
 
     <div class="filter">
-        <button (click)="resetFilter()" class="btn-secondary"><i class="mat-icon">refresh</i>Reset Filter</button>
+        <div class="header">
+            <h3>Filter</h3>
+            <button (click)="resetFilter()"><i class="mat-icon">refresh</i></button>
+        </div>
         <app-radio-button [(choice)]="show"></app-radio-button>
         <mat-form-field>
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-              <input matStartDate formControlName="start" placeholder="Start date">
-              <input matEndDate formControlName="end" placeholder="End date">
+                <input matStartDate formControlName="start" placeholder="Start date">
+                <input matEndDate formControlName="end" placeholder="End date">
             </mat-date-range-input>
             <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
-          </mat-form-field>
+        </mat-form-field>
     </div>
 
-    
-      
-    <app-log-table [cronJobLogs]="filteredLogs()"></app-log-table>
-    <app-log-list [cronJobLogs]="filteredLogs()"></app-log-list>
-    
+    <app-log-table [cronJobLogs]="filteredLogs()" [sortOrder]="sortOrder" (sortOrderChange)="sortOrder = $event"></app-log-table>
+    <app-log-list [cronJobLogs]="filteredLogs()" [sortOrder]="sortOrder" (sortOrderChange)="sortOrder = $event"></app-log-list>
+
 </section>
