@@ -12,8 +12,10 @@ export class SidebarComponent {
   router = inject(Router);
   uiService = inject(UiService);
 
-  redirectToRoute({route}: { route: string}): void {
-    this.router.navigate([`/${route}`])
+  /**
+   * Close the sidebar on mobile
+   */
+  closeSidebar(): void {
     if (window.innerWidth < 1200) {
       this.uiService.isSidebarPresented = false;
     }

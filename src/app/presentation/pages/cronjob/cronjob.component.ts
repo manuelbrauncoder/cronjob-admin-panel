@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetLogsForCronJobUseCaseService } from '../../../application/use-cases/get-logs-for-cron-job-use-case.service';
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
@@ -7,15 +12,24 @@ import { HttpResponse } from '@angular/common/http';
 import { Log } from '../../../domain/models/log.interface';
 import { GetCronJobUseCaseService } from '../../../application/use-cases/get-cron-job-use-case.service';
 import { CronJob } from '../../../domain/models/cronjob.interface';
-import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { CronExpressionDescriptionPipe } from '../../pipes/cron-expression-description.pipe';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Duration } from '../../interfaces/duration.interface';
 import { DurationHelper } from '../../utils/DurationHelper';
-import { LogTableComponent } from "../../components/log-table/log-table.component";
-import { LogListComponent } from "../../components/log-list/log-list.component";
-import { RadioButtonComponent } from "../../components/radio-button/radio-button.component";
+import { LogTableComponent } from '../../components/log-table/log-table.component';
+import { LogListComponent } from '../../components/log-list/log-list.component';
+import { RadioButtonComponent } from '../../components/radio-button/radio-button.component';
+import { JsonPipe } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-cronjob',
@@ -25,8 +39,13 @@ import { RadioButtonComponent } from "../../components/radio-button/radio-button
     CommonModule,
     LogTableComponent,
     LogListComponent,
-    RadioButtonComponent
-],
+    RadioButtonComponent,
+    MatFormField,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    JsonPipe,
+    ReactiveFormsModule,
+  ],
   templateUrl: './cronjob.component.html',
   styleUrl: './cronjob.component.scss',
   providers: [
@@ -40,7 +59,8 @@ import { RadioButtonComponent } from "../../components/radio-button/radio-button
       provide: CronJobRepository,
       useClass: CronjobApiService,
     },
-  ]
+    provideNativeDateAdapter(),
+  ],
 })
 export class CronjobComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute);
@@ -56,11 +76,16 @@ export class CronjobComponent implements OnInit {
 
   show: 'error' | 'all' = 'all';
 
+  readonly range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
   filterByError(): Log[] {
     if (this.show === 'all') {
       return this.cronJobLogs;
     }
-    return this.cronJobLogs.filter(log => log.success === false);
+    return this.cronJobLogs.filter((log) => log.success === false);
   }
 
   filteredLogs(): Log[] {

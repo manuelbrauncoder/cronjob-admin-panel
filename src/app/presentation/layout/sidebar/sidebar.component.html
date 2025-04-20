@@ -6,15 +6,15 @@
     </a>
 
     <nav>
-        <a (click)="redirectToRoute({route: 'dashboard'})" routerLinkActive="active-route">
+        <a (click)="closeSidebar()" routerLink="/dashboard" routerLinkActive="active-route">
             <i class="mat-icon">dashboard</i>
             Dashboard
         </a>
-        <a (click)="redirectToRoute({route: 'cronjobs'})" routerLinkActive="active-route">
+        <a (click)="closeSidebar()" routerLink="/cronjobs" routerLinkActive="active-route">
             <i class="mat-icon">schedule</i>
             Cronjobs
         </a>
-        <a (click)="redirectToRoute({route: 'charts'})" routerLinkActive="active-route">
+        <a (click)="closeSidebar()" routerLink="/charts" routerLinkActive="active-route">
             <i class="mat-icon">bar_chart</i>
             Charts
         </a>
