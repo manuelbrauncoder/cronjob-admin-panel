@@ -15,6 +15,7 @@ import { Duration } from '../../interfaces/duration.interface';
 import { DurationHelper } from '../../utils/DurationHelper';
 import { LogTableComponent } from "../../components/log-table/log-table.component";
 import { LogListComponent } from "../../components/log-list/log-list.component";
+import { RadioButtonComponent } from "../../components/radio-button/radio-button.component";
 
 @Component({
   selector: 'app-cronjob',
@@ -23,7 +24,8 @@ import { LogListComponent } from "../../components/log-list/log-list.component";
     HandleKeyPipe,
     CommonModule,
     LogTableComponent,
-    LogListComponent
+    LogListComponent,
+    RadioButtonComponent
 ],
   templateUrl: './cronjob.component.html',
   styleUrl: './cronjob.component.scss',
@@ -51,6 +53,19 @@ export class CronjobComponent implements OnInit {
   cronJob?: CronJob;
 
   durationHelper: DurationHelper = new DurationHelper();
+
+  show: 'error' | 'all' = 'all';
+
+  filterByError(): Log[] {
+    if (this.show === 'all') {
+      return this.cronJobLogs;
+    }
+    return this.cronJobLogs.filter(log => log.success === false);
+  }
+
+  filteredLogs(): Log[] {
+    return this.filterByError();
+  }
 
   ngOnInit(): void {
     this.cronJobKey = this.activatedRoute.snapshot.paramMap.get('id');

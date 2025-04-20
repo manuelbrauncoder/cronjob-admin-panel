@@ -8,14 +8,10 @@
     </div>
 
     <div class="filter">
-        <div class="error">
-            <span>Show:</span>
-            <span>All</span>
-            <span>with Error</span>
-        </div>
+        <app-radio-button [(choice)]="show"></app-radio-button>
     </div>
 
-    <app-log-table [(cronJobLogs)]="cronJobLogs"></app-log-table>
-    <app-log-list [(cronJobLogs)]="cronJobLogs"></app-log-list>
+    <app-log-table [cronJobLogs]="filteredLogs()"></app-log-table>
+    <app-log-list [cronJobLogs]="filteredLogs()"></app-log-list>
     
 </section>
