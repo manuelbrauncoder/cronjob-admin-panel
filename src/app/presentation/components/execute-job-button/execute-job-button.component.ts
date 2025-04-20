@@ -1,8 +1,9 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, Input, model } from '@angular/core';
 import { ExecuteCronJobUseCaseService } from '../../../application/use-cases/execute-cron-job-use-case.service';
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-execute-job-button',
@@ -18,24 +19,22 @@ import { HttpResponse } from '@angular/common/http';
   ],
 })
 export class ExecuteJobButtonComponent {
-  cronJobKey = model.required<string>();
+  @Input() cronJobKey: string = ''
   executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
+  snack = inject(SnackService);
 
   executeCronJob({ event }: { event: MouseEvent }) {
     event.stopPropagation();
-    this.executeCronJobUseCase.execute({ key: this.cronJobKey() }).subscribe({
+    this.executeCronJobUseCase.execute({ key: this.cronJobKey }).subscribe({
       next: (response: HttpResponse<void>) => {
         if (response.status === 204) {
-          // show toast success
-          console.log('Success');
+          this.snack.presentSnack({err: false, message: 'Success'});
         } else {
-          // show toast error
-          console.log('Error');
+          this.snack.presentSnack({err: true, message: `Error executing ${this.cronJobKey}`})
         }
       },
       error: (err) => {
-        // show toast with error
-        console.log('Error');
+        this.snack.presentSnack({err: true, message: `Error executing ${this.cronJobKey}`})
       },
     });
   }

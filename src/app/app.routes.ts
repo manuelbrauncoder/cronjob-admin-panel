@@ -28,7 +28,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'cronjobs/:id',
+    path: 'cronjob/:id',
     loadComponent: () =>
       import('./presentation/pages/cronjob/cronjob.component').then(
         (m) => m.CronjobComponent

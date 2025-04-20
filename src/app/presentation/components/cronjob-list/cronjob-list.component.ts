@@ -28,7 +28,7 @@ export class CronjobListComponent {
   router = inject(Router);
 
   redirectToDetail({ key }: { key: string }): void {
-    this.router.navigate(['/cronjobs', key]);
+    this.router.navigate(['/cronjob', key]);
   }
 
   showLastLogDialog({ key }: { key: string }): void {

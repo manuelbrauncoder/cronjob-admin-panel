@@ -9,3 +9,9 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+
+@if (snack.isPresented) {
+    <div @snackIn class="snack-wrapper">
+        <app-snack-bar></app-snack-bar>
+    </div>
+}

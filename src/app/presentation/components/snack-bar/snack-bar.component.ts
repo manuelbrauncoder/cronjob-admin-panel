@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-snack-bar',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './snack-bar.component.scss'
 })
 export class SnackBarComponent {
-
+    snack = inject(SnackService);
 }

@@ -21,3 +21,14 @@ export const slideIn = trigger('slideIn', [
     animate('200ms ease-in', style({ transform: 'translateX(100%)' })),
   ]),
 ]);
+
+export const snackIn = trigger('snackIn', [
+  transition(':enter', [
+    style({ transform: 'translate(-50%, -200%)' }),
+    animate('0.2s ease-out', style({ transform: 'translate(-50%, 0)' })),
+  ]),
+  transition(':leave', [
+    style({ transform: 'translate(-50%, 0)' }),
+    animate('0.2s ease-out', style({ transform: 'translate(-50%, -200%)' })),
+  ]),
+]);

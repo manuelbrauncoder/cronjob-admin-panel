@@ -25,6 +25,7 @@
         grid-column: 1;
         grid-area: sidebar;
         background-color: $color-accent;
+        z-index: 10;
 
         @media(max-width: 1000px) {
             position: fixed;
@@ -59,4 +60,11 @@
     transform: translateX(0);
     transition-duration: 300ms;
 
+}
+
+.snack-wrapper {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
 }

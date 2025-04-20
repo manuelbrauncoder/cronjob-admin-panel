@@ -4,18 +4,17 @@
     </div>
 
     @if (searchTerm.length > 0 && filteredJobs().length === 0) {
-        <span>No Jobs found</span>
+    <span>No Jobs found</span>
     } @else {
-        <app-cronjob-table [cronJobs]="filteredJobs()" [(cronJobKey)]="selectedJobKey"></app-cronjob-table>
-    
+    <app-cronjob-table [cronJobs]="filteredJobs()" [(cronJobKey)]="selectedJobKey"></app-cronjob-table>
     <app-cronjob-list [cronJobs]="filteredJobs()" [(cronJobKey)]="selectedJobKey"></app-cronjob-list>
     }
-    
+
 </section>
 
 @if (uiService.isLastLogDialogPresented) {
-    <div @fadeIn class="dialog">
-        <app-last-log-dialog [(cronJobKey)]="selectedJobKey"></app-last-log-dialog>
-    </div>
-    <div (click)="hideLastLogDialog()" class="dialog-bg"></div>
-    }
+<div @fadeIn class="dialog">
+    <app-last-log-dialog [(cronJobKey)]="selectedJobKey"></app-last-log-dialog>
+</div>
+<div (click)="hideLastLogDialog()" class="dialog-bg"></div>
+}

@@ -1,1 +1,8 @@
-<p>snack-bar works!</p>
+<div class="snack">
+    @if (snack.error) {
+        <i class="mat-icon error">error</i>
+    } @else {
+        <i class="mat-icon success">check</i>
+    }
+    <span>{{ snack.message }}</span>
+</div>
