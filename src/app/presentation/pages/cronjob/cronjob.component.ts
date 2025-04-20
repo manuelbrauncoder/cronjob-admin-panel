@@ -111,7 +111,6 @@ export class CronjobComponent implements OnInit {
         next: (response: HttpResponse<CronJob>) => {
           if (response.status === 200) {
             this.cronJob = response.body as CronJob;
-            console.log(this.cronJob);
           }
         },
         error: (err) => {
@@ -129,7 +128,6 @@ export class CronjobComponent implements OnInit {
           next: (response: HttpResponse<Log[]>) => {
             if (response.status === 200) {
               this.cronJobLogs = response.body as Log[];
-              console.log(this.cronJobLogs);
             } else {
               console.log('error - status code:', response.status);
             }

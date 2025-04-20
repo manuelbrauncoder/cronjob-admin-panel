@@ -12,7 +12,7 @@
             <h3>Filter</h3>
             <button (click)="resetFilter()"><i class="mat-icon">refresh</i></button>
         </div>
-        <app-radio-button [(choice)]="show"></app-radio-button>
+        <app-radio-button [filter]="show" (filterChange)="show = $event"></app-radio-button>
         <mat-form-field>
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
