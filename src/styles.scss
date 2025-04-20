@@ -214,3 +214,7 @@ table {
 .mat-mdc-text-field-wrapper {
     background: $color-light !important;
 }
+
+.mat-datepicker-content .mat-calendar-table-header {
+    display: none;
+  }
