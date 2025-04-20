@@ -1,7 +1,8 @@
 import { Duration } from '../interfaces/duration.interface';
 
 export class DurationHelper {
-  calculateDuration({ startTime, endTime }: Duration): string {
+
+  static calculateDuration({ startTime, endTime }: Duration): string {
     if (endTime == null || startTime == null) {
       return '';
     }

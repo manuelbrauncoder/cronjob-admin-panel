@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetLogsForCronJobUseCaseService } from '../../../application/use-cases/get-logs-for-cron-job-use-case.service';
 import { CronJobRepository } from '../../../domain/services/cronjob-repository';
@@ -20,16 +15,12 @@ import { DurationHelper } from '../../utils/DurationHelper';
 import { LogTableComponent } from '../../components/log-table/log-table.component';
 import { LogListComponent } from '../../components/log-list/log-list.component';
 import { RadioButtonComponent } from '../../components/radio-button/radio-button.component';
-import { JsonPipe } from '@angular/common';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { LogFilterHelper } from '../../utils/LogFilterHelper';
+import { ErrorFilterEnum } from '../../enums/ErrorFilterEnum';
 
 @Component({
   selector: 'app-cronjob',
@@ -43,7 +34,6 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
     MatFormField,
     MatFormFieldModule,
     MatDatepickerModule,
-    JsonPipe,
     ReactiveFormsModule,
   ],
   templateUrl: './cronjob.component.html',
@@ -72,24 +62,33 @@ export class CronjobComponent implements OnInit {
   cronJobLogs: Log[] = [];
   cronJob?: CronJob;
 
-  durationHelper: DurationHelper = new DurationHelper();
-
-  show: 'error' | 'all' = 'all';
+  show: ErrorFilterEnum = ErrorFilterEnum.All;
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
 
-  filterByError(): Log[] {
-    if (this.show === 'all') {
-      return this.cronJobLogs;
-    }
-    return this.cronJobLogs.filter((log) => log.success === false);
+  /**
+   * Filter the logs by:
+   *  - Date Range and, or
+   *  - only with error
+   * @returns 
+   */
+  filteredLogs(): Log[] {
+    const start = this.range.get('start')?.value;
+    const end = this.range.get('end')?.value;
+
+    let result = this.cronJobLogs;
+    result = LogFilterHelper.byDateRange({ logs: result, start: start, end: end })
+    result = LogFilterHelper.byErrorStatus({ logs: result, show: this.show })
+
+    return result;
   }
 
-  filteredLogs(): Log[] {
-    return this.filterByError();
+  resetFilter() {
+    this.range.reset();
+    this.show = ErrorFilterEnum.All;
   }
 
   ngOnInit(): void {
@@ -99,7 +98,7 @@ export class CronjobComponent implements OnInit {
   }
 
   calculateDuration({ startTime, endTime }: Duration): string {
-    return this.durationHelper.calculateDuration({ startTime, endTime });
+    return DurationHelper.calculateDuration({ startTime, endTime });
   }
 
   getCronJob() {

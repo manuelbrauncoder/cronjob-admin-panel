@@ -17,9 +17,8 @@ import { Log } from '../../../domain/models/log.interface';
 })
 export class LogTableComponent {
   cronJobLogs = model.required<Log[]>();
-  durationHelper: DurationHelper = new DurationHelper();
 
   calculateDuration({ startTime, endTime }: Duration): string {
-    return this.durationHelper.calculateDuration({ startTime, endTime });
+    return DurationHelper.calculateDuration({ startTime, endTime });
   }
 }

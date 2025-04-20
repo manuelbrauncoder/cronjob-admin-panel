@@ -12,9 +12,8 @@ import { LogListRowComponent } from '../log-list-row/log-list-row.component';
 })
 export class LogListComponent {
   cronJobLogs = model.required<Log[]>();
-  durationHelper: DurationHelper = new DurationHelper();
 
   calculateDuration({ startTime, endTime }: Duration): string {
-    return this.durationHelper.calculateDuration({ startTime, endTime });
+    return DurationHelper.calculateDuration({ startTime, endTime });
   }
 }

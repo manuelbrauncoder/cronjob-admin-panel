@@ -13,9 +13,8 @@ import { Duration } from '../../interfaces/duration.interface';
 })
 export class LogListRowComponent {
   @Input() log?: Log; 
-  durationHelper: DurationHelper = new DurationHelper();
 
   calculateDuration({ startTime, endTime }: Duration): string {
-    return this.durationHelper.calculateDuration({ startTime, endTime });
+    return DurationHelper.calculateDuration({ startTime, endTime });
   }
 }

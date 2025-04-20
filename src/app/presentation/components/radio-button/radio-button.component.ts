@@ -1,10 +1,11 @@
-import { Component, model } from '@angular/core';
+import { Component, effect, model, OnChanges, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ErrorFilterEnum } from '../../enums/ErrorFilterEnum';
 
 @Component({
   selector: 'app-radio-button',
@@ -12,15 +13,19 @@ import {
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
 })
-export class RadioButtonComponent {
-  choice = model.required<'error' | 'all'>();
+export class RadioButtonComponent implements OnInit, OnChanges {
+  choice = model.required<ErrorFilterEnum>();
 
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initFormGroup();
+  }
+
+  ngOnChanges(): void {
+    this.form.get('choice')?.setValue(this.choice());
   }
 
   /**
@@ -33,7 +38,7 @@ export class RadioButtonComponent {
       choice: [this.choice(), Validators.required],
     });
 
-    this.form.get('choice')?.valueChanges.subscribe((val: 'error' | 'all') => {
+    this.form.get('choice')?.valueChanges.subscribe((val: ErrorFilterEnum) => {
       this.choice.set(val);
     });
   }

@@ -1,8 +1,18 @@
 @use '../../../../styles.scss' as *;
 
 section {
-    >div >div span:first-of-type {
-        font-weight: 700;
+    
+    .filter {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            width: fit-content;
+        }
     }
 
     app-log-table {
