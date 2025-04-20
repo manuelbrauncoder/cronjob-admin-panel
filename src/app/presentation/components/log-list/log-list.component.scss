@@ -1,10 +1,40 @@
-section {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    align-items: stretch;
+@use '../../../../styles.scss' as *;
 
-    @media(max-width: 699px) {
-        grid-template-columns: repeat(1, minmax(200px, 1fr));
+section {
+    .sort {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        width: fit-content;
+        transition-duration: $transition-duration;
+
+        span {
+            font-size: 1rem;
+        }
+
+        span:first-of-type {
+            font-weight: 700;
+        }
+
+        i {
+            font-size: 22px;
+        }
+
+        &:hover {
+            color: $color-accent;
+            transition-duration: $transition-duration;
+        }
+    }
+
+    .list {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+
+        @media(max-width: 699px) {
+            grid-template-columns: repeat(1, minmax(200px, 1fr));
+        }
     }
 }

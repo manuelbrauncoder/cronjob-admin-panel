@@ -1,5 +1,12 @@
 <section>
-    @for (log of cronJobLogs; track $index) {
-    <app-log-list-row [log]="log"></app-log-list-row>
-    }
+    <div (click)="toggleSortOrder()" class="sort">
+        <span>Sort Order: </span>
+        <span>Start time {{ sortOrder }}</span>
+        <i class="mat-icon">swap_vert</i>
+    </div>
+    <div class="list">
+        @for (log of cronJobLogs; track $index) {
+            <app-log-list-row [log]="log"></app-log-list-row>
+            }
+    </div>
 </section>

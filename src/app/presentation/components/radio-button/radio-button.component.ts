@@ -1,4 +1,4 @@
-import { Component, effect, model, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,8 +13,9 @@ import { ErrorFilterEnum } from '../../enums/ErrorFilterEnum';
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
 })
-export class RadioButtonComponent implements OnInit, OnChanges {
-  choice = model.required<ErrorFilterEnum>();
+export class RadioButtonComponent implements OnInit {
+  @Input() filter: ErrorFilterEnum = ErrorFilterEnum.All;
+  @Output() filterChange = new EventEmitter<ErrorFilterEnum>();
 
   form!: FormGroup;
 
@@ -24,10 +25,6 @@ export class RadioButtonComponent implements OnInit, OnChanges {
     this.initFormGroup();
   }
 
-  ngOnChanges(): void {
-    this.form.get('choice')?.setValue(this.choice());
-  }
-
   /**
    * Initializes the FormGroup with a single control 'choice'
    * Set Validators to required
@@ -35,11 +32,11 @@ export class RadioButtonComponent implements OnInit, OnChanges {
    */
   initFormGroup(): void {
     this.form = this.formBuilder.group({
-      choice: [this.choice(), Validators.required],
+      choice: [this.filter, Validators.required],
     });
 
-    this.form.get('choice')?.valueChanges.subscribe((val: ErrorFilterEnum) => {
-      this.choice.set(val);
+    this.form.get('choice')?.valueChanges.subscribe((value: ErrorFilterEnum) => {
+      this.filterChange.emit(value);
     });
   }
 }
