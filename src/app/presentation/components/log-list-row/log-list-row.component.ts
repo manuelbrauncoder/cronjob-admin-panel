@@ -1,13 +1,13 @@
-import { Component, Input, model } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Log } from '../../../domain/models/log.interface';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { DurationHelper } from '../../utils/DurationHelper';
 import { Duration } from '../../interfaces/duration.interface';
 
 @Component({
   selector: 'app-log-list-row',
-  imports: [DatePipe, BoolToTextPipe],
+  imports: [DatePipe, BoolToTextPipe, CommonModule],
   templateUrl: './log-list-row.component.html',
   styleUrl: './log-list-row.component.scss'
 })

@@ -17,8 +17,8 @@
         <span>{{ calculateDuration({ startTime: log?.startTime, endTime: log?.endTime })}}</span>
     </div>
     <div class="success">
-        <h3 class="mb-0-25">Error?</h3>
-        <span>{{ log?.success | boolToText }}</span>
+        <h3 class="mb-0-25">Success?</h3>
+        <span [ngClass]="!log?.success ? 'color-danger' : 'color-success' ">{{ log?.success | boolToText }}</span>
     </div>
     <div class="output">
         <h3 class="mb-0-25">Output:</h3>

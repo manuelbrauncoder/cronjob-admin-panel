@@ -1,17 +1,38 @@
 @use '../../../../styles.scss' as *;
 
-app-cronjob-table {
-    display: none;
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-    @media(min-width: 1000px) {
-        display: block;
+    .filter {
+
+        input {
+            border: 1px solid $color-accent;
+            border-radius: 6px;
+            background: unset;
+            padding: 0.25rem 0.75rem;
+            font-size: 1rem;
+
+            &:focus {
+                outline: 1px solid $color-main;
+            }
+        }
     }
-}
 
-app-cronjob-list {
-    display: block;
-
-    @media(min-width: 1000px) {
+    app-cronjob-table {
         display: none;
+
+        @media(min-width: 1000px) {
+            display: block;
+        }
+    }
+
+    app-cronjob-list {
+        display: block;
+
+        @media(min-width: 1000px) {
+            display: none;
+        }
     }
 }

@@ -8,9 +8,8 @@ export class HandleKeyPipe implements PipeTransform {
     if (!value) {
       return '';
     }
-    const stringWithoutScores = value.replaceAll('-', ' ');
     return (
-      stringWithoutScores.charAt(0).toUpperCase() + stringWithoutScores.slice(1)
+      value.charAt(0).toUpperCase() + value.slice(1)
     );
   }
 }

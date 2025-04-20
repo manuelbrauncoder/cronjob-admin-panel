@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, Input, model } from '@angular/core';
 import { CronJob } from '../../../domain/models/cronjob.interface';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';

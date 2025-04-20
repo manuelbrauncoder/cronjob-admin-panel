@@ -1,10 +1,17 @@
-<div class="filter">
+<section>
+    <div class="filter">
+        <input (input)="filteredJobs()" [(ngModel)]="searchTerm" type="text" placeholder="search for keys...">
+    </div>
 
-</div>
-
-<app-cronjob-table [(cronJobs)]="cronJobs" [(cronJobKey)]="selectedJobKey"></app-cronjob-table>
-
-<app-cronjob-list [(cronJobs)]="cronJobs" [(cronJobKey)]="selectedJobKey"></app-cronjob-list>
+    @if (searchTerm.length > 0 && filteredJobs().length === 0) {
+        <span>No Jobs found</span>
+    } @else {
+        <app-cronjob-table [cronJobs]="filteredJobs()" [(cronJobKey)]="selectedJobKey"></app-cronjob-table>
+    
+    <app-cronjob-list [cronJobs]="filteredJobs()" [(cronJobKey)]="selectedJobKey"></app-cronjob-list>
+    }
+    
+</section>
 
 @if (uiService.isLastLogDialogPresented) {
     <div @fadeIn class="dialog">

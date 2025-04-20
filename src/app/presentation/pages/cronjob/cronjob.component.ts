@@ -19,10 +19,8 @@ import { LogListComponent } from "../../components/log-list/log-list.component";
 @Component({
   selector: 'app-cronjob',
   imports: [
-    BoolToTextPipe,
     CronExpressionDescriptionPipe,
     HandleKeyPipe,
-    DatePipe,
     CommonModule,
     LogTableComponent,
     LogListComponent

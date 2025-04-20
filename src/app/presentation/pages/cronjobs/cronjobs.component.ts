@@ -10,6 +10,7 @@ import { CronjobListComponent } from '../../components/cronjob-list/cronjob-list
 import { LastLogDialogComponent } from '../../components/last-log-dialog/last-log-dialog.component';
 import { UiService } from '../../services/ui.service';
 import { fadeIn } from '../../utils/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cronjobs',
@@ -17,6 +18,7 @@ import { fadeIn } from '../../utils/animations';
     CronjobTableComponent,
     CronjobListComponent,
     LastLogDialogComponent,
+    FormsModule,
   ],
   templateUrl: './cronjobs.component.html',
   styleUrl: './cronjobs.component.scss',
@@ -40,9 +42,17 @@ export class CronjobsComponent implements OnInit {
   executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
   uiService = inject(UiService);
   selectedJobKey: string = '';
+  searchTerm: string = '';
 
   ngOnInit(): void {
     this.getCronJobs();
+  }
+
+  filteredJobs(): CronJob[] {
+    if (this.searchTerm.length === 0) {
+      return this.cronJobs;
+    }
+    return this.cronJobs.filter(job => job.key.toLowerCase().includes(this.searchTerm));
   }
 
   getCronJobs(): void {

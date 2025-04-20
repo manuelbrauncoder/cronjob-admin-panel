@@ -6,15 +6,15 @@
     </a>
 
     <nav>
-        <a routerLink="/dashboard" routerLinkActive="active-route">
+        <a (click)="redirectToRoute({route: 'dashboard'})" routerLinkActive="active-route">
             <i class="mat-icon">dashboard</i>
             Dashboard
         </a>
-        <a routerLink="/cronjobs" routerLinkActive="active-route">
+        <a (click)="redirectToRoute({route: 'cronjobs'})" routerLinkActive="active-route">
             <i class="mat-icon">schedule</i>
             Cronjobs
         </a>
-        <a routerLink="/charts" routerLinkActive="active-route">
+        <a (click)="redirectToRoute({route: 'charts'})" routerLinkActive="active-route">
             <i class="mat-icon">bar_chart</i>
             Charts
         </a>

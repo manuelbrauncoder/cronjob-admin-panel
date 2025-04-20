@@ -28,7 +28,7 @@
             </td>
             <td>
                 @if (log.success !== undefined) {
-                {{log.success | boolToText }}
+                <span [ngClass]="!log?.success ? 'color-danger' : 'color-success' ">{{ log.success | boolToText }}</span>
                 } @else {
                 N/A
                 }

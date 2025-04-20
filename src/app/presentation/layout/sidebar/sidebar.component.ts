@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  
+  router = inject(Router);
+  uiService = inject(UiService);
+
+  redirectToRoute({route}: { route: string}): void {
+    this.router.navigate([`/${route}`])
+    if (window.innerWidth < 1200) {
+      this.uiService.isSidebarPresented = false;
+    }
+  }
 
 }
