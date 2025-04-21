@@ -21,13 +21,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'charts',
-    loadComponent: () =>
-      import('./presentation/pages/charts/charts.component').then(
-        (m) => m.ChartsComponent
-      ),
-  },
-  {
     path: 'cronjob/:id',
     loadComponent: () =>
       import('./presentation/pages/cronjob/cronjob.component').then(

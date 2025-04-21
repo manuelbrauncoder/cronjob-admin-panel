@@ -5,10 +5,12 @@ import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';
 import { SnackService } from '../../services/snack.service';
+import { DoughnutChartComponent } from "../../components/doughnut-chart/doughnut-chart.component";
+import { BarChartComponent } from "../../components/bar-chart/bar-chart.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [DoughnutChartComponent, BarChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   providers: [

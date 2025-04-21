@@ -5,7 +5,22 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    border: 1px solid $color-accent;
     border-radius: 6px;
     width: fit-content;
+
+    .charts {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .doughnut {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        .bar {
+            max-height: 600px;
+            max-width: 600px;
+        }
+    }
 }

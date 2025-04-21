@@ -17,4 +17,20 @@ export class DurationHelper {
 
     return `${hrs}h ${remM}m`;
   }
+
+  static calculateDurationInMinutes({ startTime, endTime }: Duration): number {
+    if (!startTime || !endTime) {
+      return 0;
+    }
+
+    const startMs = Date.parse(startTime);
+    const endMs   = Date.parse(endTime);
+    if (isNaN(startMs) || isNaN(endMs) || endMs < startMs) {
+      return 0;
+    }
+
+    const diffMs = endMs - startMs;
+    // total minutes, discarding any seconds fraction
+    return Math.floor(diffMs / 60000);
+  }
 }

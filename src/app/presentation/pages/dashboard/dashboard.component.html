@@ -1,11 +1,16 @@
 <section>
     <h2>Cronjobs</h2>
     <div class="charts">
-        <div class="chart">
-
+        <div class="doughnut">
+            <app-doughnut-chart [cronJobs]="cronJobs"></app-doughnut-chart>
         </div>
-        <div class="legend">
-            
-        </div>
+        @defer {
+            <div class="bar">
+                <app-bar-chart [cronJobs]="cronJobs"></app-bar-chart>
+            </div>
+        } @placeholder (minimum 2s) {
+            <span>loading data from outer space...</span>
+        }
+        
     </div>
 </section>
