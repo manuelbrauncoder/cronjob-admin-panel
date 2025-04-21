@@ -12,8 +12,8 @@ import { ChartData, ChartOptions } from 'chart.js';
 export class DoughnutChartComponent implements OnChanges {
   @Input() cronJobs: CronJob[] = [];
   labels: string[] = ['Success', 'Error'];
-  errorColor: string = '#ed1e79'
-  successColor: string = '#92c83e'
+  errorColor: string = '#ed1e79';
+  successColor: string = '#92c83e';
   title: string = 'Error on last Execution';
 
   data: ChartData<'doughnut'> = {
@@ -28,14 +28,17 @@ export class DoughnutChartComponent implements OnChanges {
 
   options: ChartOptions<'doughnut'> = {
     responsive: true,
+    maintainAspectRatio: false,
+    cutout: '60%',
     plugins: {
       legend: {
+        display: true,
         position: 'right',
       },
       title: {
-        display: true,
-        text: this.title
-      }
+        display: false,
+        text: this.title,
+      },
     },
   };
 

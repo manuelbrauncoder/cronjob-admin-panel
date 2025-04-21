@@ -7,6 +7,7 @@ import { Log } from '../../../domain/models/log.interface';
 import { HandleKeyPipe } from '../../pipes/handle-key.pipe';
 import { LogListRowComponent } from '../log-list-row/log-list-row.component';
 import { SnackService } from '../../services/snack.service';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-last-log-dialog',
@@ -25,10 +26,15 @@ export class LastLogDialogComponent implements OnInit {
   cronJobKey = model.required<string>();
   getLastLogUseCase = inject(GetLastLogUseCaseService);
   snack = inject(SnackService);
+  uiService = inject(UiService);
   lastLog?: Log;
 
   ngOnInit(): void {
     this.getLastLog();
+  }
+
+  closeDialog() {
+    this.uiService.isLastLogDialogPresented = false;
   }
 
   getLastLog() {

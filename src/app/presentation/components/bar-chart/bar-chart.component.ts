@@ -32,6 +32,7 @@ export class BarChartComponent implements OnChanges {
   @Input() cronJobs: CronJob[] = [];
   durationKeyPairs: DurationKeyPair[] = [];
   getLastLogUseCase = inject(GetLastLogUseCaseService);
+  accentColor = '#797ef3'
 
   title: string = 'Duration';
 
@@ -39,10 +40,9 @@ export class BarChartComponent implements OnChanges {
     labels: [],
     datasets: [
       {
-        label: 'Duration (min)',
+        label: 'Duration in minutes',
         data: [],
-        backgroundColor: 'rgba(33, 150, 243, 0.7)',
-        borderColor: 'rgba(33, 150, 243, 1)',
+        backgroundColor: this.accentColor,
         borderWidth: 1,
       },
     ],
@@ -54,32 +54,41 @@ export class BarChartComponent implements OnChanges {
       x: {
         title: {
           display: true,
-          text: 'Cron Job Key',
+          text: 'Cronjob',
         },
+        ticks: {
+          display: false
+        },
+        grid: {
+          display: false
+        }
       },
       y: {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Duration (minutes)',
-        },
-      },
+          text: 'Duration (min)',
+        }
+      }
     },
     plugins: {
       legend: { display: false },
       title: {
-        display: true,
-        text: 'Cron Job Execution Durations',
+        display: false
       },
-    },
+      tooltip: {
+        enabled: true
+      }
+    }
   };
+  
 
   /**
    * Fetches the last log for each cronjob,
    * creates a DurationKeyPair and push it
    * into the durationKeyPairs array
    */
-  private createData() {
+  private createData(): void {
     this.cronJobs.forEach((job) => {
       this.getLastDuration({ key: job.key }).subscribe({
         next: (duration: number) => {
@@ -94,11 +103,6 @@ export class BarChartComponent implements OnChanges {
     });
   }
 
-  /**
-   *
-   * @param params
-   * @returns a DurationKeyPair Object
-   */
   private createKeyDurationPair(params: {
     key: string;
     duration: number;

@@ -8,11 +8,6 @@
     transition: $transition-duration;
     height: 100%;
 
-    &:hover {
-        transition: $transition-duration;
-        background: $color-light;
-    }
-
     .output {
         span {
             white-space: wrap;
@@ -31,4 +26,9 @@
     padding: $site-padding;
     border: 1px solid $color-accent;
 
+    &:hover {
+        transition: $transition-duration;
+        background: $color-light;
+    }
 }
+

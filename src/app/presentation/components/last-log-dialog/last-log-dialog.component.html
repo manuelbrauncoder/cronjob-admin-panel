@@ -1,6 +1,9 @@
 <section class="dFlexColumnStart g-0-5">
-    <h2>Last log for {{ lastLog?.key | handleKey }}</h2>
-
+   
+    <div>
+        <h2>Last log for {{ lastLog?.key | handleKey }}</h2>
+        <i (click)="closeDialog()" class="mat-icon">close</i>
+    </div>
     @if (lastLog) {
         <app-log-list-row [appearsInList]="false" [log]="lastLog"></app-log-list-row>
     } @else {

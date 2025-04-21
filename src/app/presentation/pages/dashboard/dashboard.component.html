@@ -2,14 +2,16 @@
     <h2>Cronjobs</h2>
     <div class="charts">
         <div class="doughnut">
+            <h3>Last Execution Error Chart</h3>
             <app-doughnut-chart [cronJobs]="cronJobs"></app-doughnut-chart>
         </div>
         @defer {
             <div class="bar">
+                <h3>Last Execution Duration</h3>
                 <app-bar-chart [cronJobs]="cronJobs"></app-bar-chart>
             </div>
-        } @placeholder (minimum 2s) {
-            <span>loading data from outer space...</span>
+        } @placeholder (minimum 3s) {
+            <span class="loading">loading data...</span>
         }
         
     </div>

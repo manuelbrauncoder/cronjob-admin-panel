@@ -16,7 +16,7 @@ export class SidebarComponent {
    * Close the sidebar on mobile
    */
   closeSidebar(): void {
-    if (window.innerWidth < 1200) {
+    if (window.innerWidth < 1000) {
       this.uiService.isSidebarPresented = false;
     }
   }

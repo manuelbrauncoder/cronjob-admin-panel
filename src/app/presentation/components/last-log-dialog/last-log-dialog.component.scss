@@ -2,12 +2,28 @@
 
 section {
     border-radius: 6px;
-    h2 {
+
+    >div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
         width: 100%;
         background-color: $color-light;
         padding: $site-padding;
         border-radius: 6px 6px 0 0;
         color: $color-dark;
+
+        i {
+            font-size: 24px;
+            cursor: pointer;
+            transition-duration: $transition-duration;
+
+            &:hover {
+                color: $color-accent;
+                transition-duration: $transition-duration;
+            }
+        }
     }
 
     app-log-list-row {
