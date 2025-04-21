@@ -22,6 +22,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { LogFilterHelper } from '../../utils/LogFilterHelper';
 import { ErrorFilterEnum } from '../../enums/ErrorFilterEnum';
 import { SortOrder } from '../../enums/SortOrder';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-cronjob',
@@ -58,6 +59,7 @@ export class CronjobComponent implements OnInit {
 
   getLogsForCronJobUseCase = inject(GetLogsForCronJobUseCaseService);
   getCronJobUseCase = inject(GetCronJobUseCaseService);
+  snack = inject(SnackService);
 
   cronJobKey?: string | null = null;
   cronJobLogs: Log[] = [];
@@ -75,17 +77,24 @@ export class CronjobComponent implements OnInit {
    * Filter the logs by:
    *  - Date Range and, or
    *  - only with error
-   * @returns 
+   * @returns
    */
   filteredLogs(): Log[] {
     const start = this.range.get('start')?.value;
     const end = this.range.get('end')?.value;
 
     let result = this.cronJobLogs;
-    
-    result = LogFilterHelper.byDateRange({ logs: result, start: start, end: end })
-    result = LogFilterHelper.byErrorStatus({ logs: result, show: this.show })
-    result = LogFilterHelper.sortByStartTime({ logs: result, sort: this.sortOrder })
+
+    result = LogFilterHelper.byDateRange({
+      logs: result,
+      start: start,
+      end: end,
+    });
+    result = LogFilterHelper.byErrorStatus({ logs: result, show: this.show });
+    result = LogFilterHelper.sortByStartTime({
+      logs: result,
+      sort: this.sortOrder,
+    });
 
     return result;
   }
@@ -111,10 +120,15 @@ export class CronjobComponent implements OnInit {
         next: (response: HttpResponse<CronJob>) => {
           if (response.status === 200) {
             this.cronJob = response.body as CronJob;
+          } else {
+            this.snack.presentSnack({
+              err: true,
+              message: `Error: ${response.status}`,
+            });
           }
         },
         error: (err) => {
-          console.log('Error fetching Cronjob:', err);
+          this.snack.presentSnack({ err: true, message: `Error: ${err}` });
         },
       });
     }
@@ -129,11 +143,14 @@ export class CronjobComponent implements OnInit {
             if (response.status === 200) {
               this.cronJobLogs = response.body as Log[];
             } else {
-              console.log('error - status code:', response.status);
+              this.snack.presentSnack({
+                err: true,
+                message: `Error: ${response.status}`,
+              });
             }
           },
           error: (err) => {
-            console.log('error:', err);
+            this.snack.presentSnack({ err: true, message: `Error: ${err}` });
           },
         });
     }

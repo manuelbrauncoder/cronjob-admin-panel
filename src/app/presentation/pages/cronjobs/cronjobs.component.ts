@@ -11,6 +11,7 @@ import { LastLogDialogComponent } from '../../components/last-log-dialog/last-lo
 import { UiService } from '../../services/ui.service';
 import { fadeIn } from '../../utils/animations';
 import { FormsModule } from '@angular/forms';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-cronjobs',
@@ -38,9 +39,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class CronjobsComponent implements OnInit {
   cronJobs: CronJob[] = [];
+
   getCronJobsUseCase = inject(GetCronjobsUseCaseService);
   executeCronJobUseCase = inject(ExecuteCronJobUseCaseService);
   uiService = inject(UiService);
+  snack = inject(SnackService);
+
   selectedJobKey: string = '';
   searchTerm: string = '';
 
@@ -48,21 +52,33 @@ export class CronjobsComponent implements OnInit {
     this.getCronJobs();
   }
 
+  /**
+   * Filter the cronjobs by the searchTerm
+   * @returns filtered cronjobs, or if searchTerm is empty, all cronjobs
+   */
   filteredJobs(): CronJob[] {
     if (this.searchTerm.length === 0) {
       return this.cronJobs;
     }
-    return this.cronJobs.filter(job => job.key.toLowerCase().includes(this.searchTerm));
+    return this.cronJobs.filter((job) =>
+      job.key.toLowerCase().includes(this.searchTerm)
+    );
   }
 
   getCronJobs(): void {
     this.getCronJobsUseCase.execute().subscribe({
       next: (response: HttpResponse<CronJob[]>) => {
-        this.cronJobs = response.body as CronJob[];
+        if (response.status === 200) {
+          this.cronJobs = response.body as CronJob[];
+        } else {
+          this.snack.presentSnack({
+            err: true,
+            message: `Error: ${response.status}`,
+          });
+        }
       },
       error: (err) => {
-        // show toast with error
-        console.log('Error');
+        this.snack.presentSnack({ err: true, message: `Error: ${err}` });
       },
     });
   }
