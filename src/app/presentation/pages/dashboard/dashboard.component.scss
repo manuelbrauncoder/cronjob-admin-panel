@@ -1,0 +1,11 @@
+@use '../../../../styles.scss' as *;
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid $color-accent;
+    border-radius: 6px;
+    width: fit-content;
+}
