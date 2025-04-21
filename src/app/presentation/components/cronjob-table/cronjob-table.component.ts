@@ -40,6 +40,6 @@ export class CronjobTableComponent {
   }
 
   redirectToDetail({ key }: { key: string }): void {
-    this.router.navigate(['/cronjobs', key]);
+    this.router.navigate(['/cronjob', key]);
   }
 }
