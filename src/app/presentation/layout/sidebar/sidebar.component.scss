@@ -1,4 +1,5 @@
 @use '../../../../styles.scss' as *;
+@use 'sass:color';
 
 aside {
     display: flex;
@@ -29,7 +30,7 @@ aside {
         }
 
         span:nth-child(2) {
-            color: darken($color: $color-accent, $amount: 5%);
+            color: color.adjust($color-accent, $lightness: -5%);
         }
 
         span:nth-child(3) {
@@ -71,5 +72,5 @@ aside {
 }
 
 .active-route {
-    background-color: darken($color: $color-accent, $amount: 5%);
+    background: color.adjust($color-accent, $lightness: -5%);
 }

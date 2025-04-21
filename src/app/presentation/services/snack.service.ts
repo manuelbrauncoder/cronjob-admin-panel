@@ -11,6 +11,12 @@ export class SnackService {
 
   constructor() { }
 
+  /**
+   * Presents a Snackbar on the top
+   * disappear after timeout
+   * 
+   * @param params 
+   */
   presentSnack(params: { err: boolean, message: string }): void {
     const  { err, message } = params;
     this.error = err;
