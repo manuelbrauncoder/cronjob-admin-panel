@@ -30,7 +30,6 @@ export class DurationHelper {
     }
 
     const diffMs = endMs - startMs;
-    // total minutes, discarding any seconds fraction
     return Math.floor(diffMs / 60000);
   }
 }
