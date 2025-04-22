@@ -10,7 +10,7 @@
             <i class="mat-icon">dashboard</i>
             Dashboard
         </a>
-        <a (click)="closeSidebar()" routerLink="/cronjobs" routerLinkActive="active-route">
+        <a (click)="closeSidebar()" routerLink="/cronjobs" [ngClass]="isRouteActive() ? 'active-route' : ''">
             <i class="mat-icon">schedule</i>
             Cronjobs
         </a>
