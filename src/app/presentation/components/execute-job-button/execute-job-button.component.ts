@@ -4,10 +4,12 @@ import { CronJobRepository } from '../../../domain/services/cronjob-repository';
 import { CronjobApiService } from '../../../infrastructure/services/cronjob-api.service';
 import { HttpResponse } from '@angular/common/http';
 import { SnackService } from '../../services/snack.service';
+import { TooltipModule } from 'primeng/tooltip';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-execute-job-button',
-  imports: [],
+  imports: [TooltipModule, ButtonModule],
   templateUrl: './execute-job-button.component.html',
   styleUrl: './execute-job-button.component.scss',
   providers: [

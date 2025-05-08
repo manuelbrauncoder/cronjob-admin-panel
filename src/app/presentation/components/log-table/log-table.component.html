@@ -1,20 +1,23 @@
-<table>
-    <thead>
+<p-table [value]="cronJobLogs" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 15]" sortField="startTime">
+    <ng-template #header>
         <tr>
-            <th scope="column">
-                <div class="start-time-head">
-                    <span>Start time</span>
-                    <i (click)="toggleSortOrder()" class="mat-icon">swap_vert</i>
-                </div>
+            <th scope="column" pSortableColumn="startTime">
+                Start time
+                <p-sortIcon field="startTime" />
             </th>
-            <th scope="column">End time</th>
+            <th scope="column" pSortableColumn="endTime">
+                End time
+                <p-sortIcon field="endTime" />
+            </th>
             <th scope="column">Duration</th>
-            <th scope="column">Success</th>
+            <th scope="column" pSortableColumn="success">
+                Success
+                <p-sortIcon field="success" />
+            </th>
             <th scope="column">Output</th>
         </tr>
-    </thead>
-    <tbody>
-        @for (log of cronJobLogs; track $index) {
+    </ng-template>
+    <ng-template #body let-log>
         <tr>
             <td>{{log.startTime | date: 'short': 'UTC' }}</td>
             <td>
@@ -46,6 +49,5 @@
                 }
             </td>
         </tr>
-        }
-    </tbody>
-</table>
+    </ng-template>
+</p-table>

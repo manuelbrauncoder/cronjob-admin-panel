@@ -1,31 +1,41 @@
-<table>
-    <thead>
+<p-table [value]="cronJobs()" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 15]" sortField="errorOnLastExecution" [sortOrder]="-1">
+    <ng-template #header>
         <tr>
-            <th scope="col">Key</th>
-            <th scope="col">Interval</th>
-            <th scope="col">Last execution</th>
-            <th scope="col">Error on last execution?</th>
-            <th scope="col">Logs</th>
-            <th scope="col">Execute Job</th>
+            <th pSortableColumn="key">
+                Key
+                <p-sortIcon field="key" />
+            </th>
+            <th>Interval</th>
+            <th pSortableColumn="lastExecution">
+                Last execution
+                <p-sortIcon field="lastExecution" />
+            </th>
+            <th pSortableColumn="errorOnLastExecution">
+                Error on last execution?
+                <p-sortIcon field="errorOnLastExecution" />
+            </th>
+            <th>Logs</th>
+            <th>Execute Job</th>
         </tr>
-    </thead>
-    <tbody>
-        @for (job of cronJobs(); track $index) {
+    </ng-template>
+    <ng-template #body let-job>
         <tr>
             <td>{{ job.key | handleKey }}</td>
             <td>{{ job.time | cronExpressionDescription }}</td>
             <td>{{ job.lastExecution | date: 'short':'UTC' }}</td>
-            <td [ngClass]="job.errorOnLastExecution ? 'color-danger' : 'color-success' ">{{ job.errorOnLastExecution |
+            <td>{{ job.errorOnLastExecution |
                 boolToText }}</td>
             <td>
                 <div class="dFlexCC g-0-5">
-                    <button class="btn-secondary" (click)="showLastLogDialog({key: job.key})">Last
-                        Log</button>
-                    <button class="btn-primary" (click)="redirectToDetail({ key: job.key })">All Logs</button>
+                    <p-button pTooltip="Shows the last log" tooltipPosition="top" label="Last Log" severity="info" (click)="showLastLogDialog({key: job.key})" />
+                    <p-button pTooltip="Shows all logs from the Cronjob" tooltipPosition="top" label="All Logs" (click)="redirectToDetail({ key: job.key })" />
                 </div>
             </td>
-            <td><app-execute-job-button [cronJobKey]="job.key"></app-execute-job-button></td>
+
+            <td>
+                <app-execute-job-button [cronJobKey]="job.key"></app-execute-job-button>
+            </td>
         </tr>
-        }
-    </tbody>
-</table>
+    </ng-template>
+
+</p-table>

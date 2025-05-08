@@ -4,6 +4,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +15,13 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
     ),
     provideAnimationsAsync(), provideCharts(withDefaultRegisterables()),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false,
+        }
+      }
+    })
   ],
 };

@@ -12,6 +12,8 @@ import { UiService } from '../../services/ui.service';
 import { fadeIn } from '../../utils/animations';
 import { FormsModule } from '@angular/forms';
 import { SnackService } from '../../services/snack.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-cronjobs',
@@ -20,6 +22,8 @@ import { SnackService } from '../../services/snack.service';
     CronjobListComponent,
     LastLogDialogComponent,
     FormsModule,
+    InputTextModule,
+    FloatLabelModule
   ],
   templateUrl: './cronjobs.component.html',
   styleUrl: './cronjobs.component.scss',

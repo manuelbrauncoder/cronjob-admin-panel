@@ -1,4 +1,4 @@
-import { Component, inject, Input, model } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { CronJob } from '../../../domain/models/cronjob.interface';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { UiService } from '../../services/ui.service';
 import { fadeIn } from '../../utils/animations';
 import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-button.component";
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-cronjob-table',
@@ -17,7 +20,10 @@ import { ExecuteJobButtonComponent } from "../execute-job-button/execute-job-but
     HandleKeyPipe,
     CronExpressionDescriptionPipe,
     CommonModule,
-    ExecuteJobButtonComponent
+    ExecuteJobButtonComponent,
+    TableModule,
+    TooltipModule,
+    ButtonModule
 ],
   templateUrl: './cronjob-table.component.html',
   styleUrl: './cronjob-table.component.scss',

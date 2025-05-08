@@ -1,5 +1,7 @@
+
 @use 'sass:color';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
 
 $color-danger: #ed1e79;
 $color-success: #92c83e;
@@ -40,6 +42,10 @@ h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: $color-dark;
+}
+
+input {
+    padding: 0.5rem 1rem;
 }
 
 .btn-primary {
@@ -134,48 +140,6 @@ h2 {
 
 .ch-50 {
     max-width: 50ch;
-}
-
-table {
-    display: table;
-    border-spacing: 2px;
-    border-collapse: collapse;
-    text-indent: 0;
-    text-align: left;
-
-    caption {
-        margin-bottom: 0.5rem;
-        text-align: left;
-    }
-
-    thead {
-        background: $color-light;
-    }
-
-    tbody {
-        background: color.adjust($color-light, $lightness: 5%);
-    }
-
-    tr {
-        transition: ease-in-out 125ms;
-
-        th,
-        td {
-            border: 1px solid $color-accent;
-            padding: 0.5rem 0.5rem;
-            align-content: flex-start;
-        }
-
-        td .btn-danger {
-            width: 100px;
-            height: 25px;
-        }
-
-        &:hover {
-            background: $color-light;
-            transition: ease-in-out 125ms;
-        }
-    }
 }
 
 .mat-icon {

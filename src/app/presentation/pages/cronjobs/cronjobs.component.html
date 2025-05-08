@@ -1,7 +1,8 @@
 <section>
-    <div class="filter">
-        <input (input)="filteredJobs()" [(ngModel)]="searchTerm" type="text" placeholder="search for keys...">
-    </div>
+    <p-floatlabel variant="on">
+        <input pInputText id="searchTerm" [(ngModel)]="searchTerm" autocomplete="off" />
+        <label for="searchTerm">Search Cronjob</label>
+    </p-floatlabel>
 
     @if (searchTerm.length > 0 && filteredJobs().length === 0) {
     <span>No Jobs found</span>

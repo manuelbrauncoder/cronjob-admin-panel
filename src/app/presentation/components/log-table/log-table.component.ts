@@ -5,10 +5,12 @@ import { BoolToTextPipe } from '../../pipes/bool-to-text.pipe';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Log } from '../../../domain/models/log.interface';
 import { SortOrder } from '../../enums/SortOrder';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-log-table',
-  imports: [BoolToTextPipe, DatePipe, CommonModule],
+  imports: [BoolToTextPipe, DatePipe, CommonModule, TableModule, TooltipModule],
   templateUrl: './log-table.component.html',
   styleUrl: './log-table.component.scss',
 })
@@ -23,7 +25,7 @@ export class LogTableComponent {
         ? SortOrder.Descending
         : SortOrder.Ascending;
 
-        this.sortOrderChange.emit(next);
+    this.sortOrderChange.emit(next);
   }
 
   calculateDuration({ startTime, endTime }: Duration): string {
