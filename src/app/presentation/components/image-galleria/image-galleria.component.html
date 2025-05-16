@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <p-galleria 
+
+    [value]="images"
+    [autoPlay]="galleriaConfig.autoPlay"
+    [circular]="galleriaConfig.circular"
+    [showItemNavigatorsOnHover]="galleriaConfig.showItemNavigatorsOnHover"
+    [showItemNavigators]="galleriaConfig.showItemNavigators"
+    [numVisible]="galleriaConfig.thumbnailsVisibleNumber"
+    [showThumbnails]="galleriaConfig.showThumbnails"
+    [showIndicators]="galleriaConfig.showIndicators"
+
+    >
+    <ng-template pTemplate="item" let-item>
+        <img [src]="item.itemImageSrc" />
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+        <img [src]="item.thumbnailImageSrc" />
+    </ng-template>
+    <ng-template pTemplate="caption" let-item>
+        <div>{{ item.title }}</div>
+        <p>{{ item.alt }}</p>
+    </ng-template>
+</p-galleria>
+</div>

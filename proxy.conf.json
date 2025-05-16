@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://www.kreuzfahrten.de",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "/api" }
+  }
+}

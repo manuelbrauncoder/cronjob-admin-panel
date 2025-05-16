@@ -28,6 +28,10 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'gallery',
+    loadComponent: () => import('./presentation/pages/gallery/gallery.component').then((m) => m.GalleryComponent)
+  },
+  {
     path: '**',
     redirectTo: 'not-found',
     pathMatch: 'full',
